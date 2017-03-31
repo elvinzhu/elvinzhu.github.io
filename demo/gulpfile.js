@@ -204,4 +204,13 @@ gulp.task( 'server', function(){
     gulp.watch(['**/*.*', '!./css/_scss/**/*.*']).on('change', reload).on('error', onError );
 });
 
+
+gulp.task( 'replace', function(){
+    
+    return gulp.src( './**/*.html')
+//        .pipe(replace('/js/page/common', '/demo/js/page/common'))
+        .pipe(replace('/demo/demo/', '/demo/'))
+        .pipe(gulp.dest('.'));
+})
+
 gulp.task( 'default', [ 'watch:sass' ]);
