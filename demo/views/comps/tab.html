@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>tab组件</title>
+    <meta name="keywords" content="demo" />
+    <meta name="description" content="demo" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" >
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no,minimal-ui">
+    <meta name="format-detection" content="telephone=no,email=no">
+    <meta name="author" content="m.zhongan.com">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta content="yes" name="apple-touch-fullscreen">
+    <link rel="apple-touch-icon-precomposed" sizes="57x57" href="/resource/image/apple_icon/zhongan_icon_52.png" />  
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="/resource/image/apple_icon/zhongan_icon_72.png" />  
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/resource/image/apple_icon/zhongan_icon_114.png" />    
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/resource/image/apple_icon/zhongan_icon_144.png" /> 
+    <link rel="Shortcut Icon" type="image/x-icon" href="/resource/image/apple_icon/zhongan_icon_144.png" />
+    <script>(window.__setFontSize__=function(){document.documentElement.style.fontSize = Math.min( 640, Math.max(document.documentElement.clientWidth, 320) ) / 320 * 14 + 'px'})()</script>
+    <link rel="stylesheet" href="/css/main.css" />
+    <link rel="stylesheet" href="/css/page/index.css" />
+    <style>
+    img {
+        max-width:100%;
+        display: block;
+    }
+    </style>
+</head>
+<body>
+<div id="viewport">
+    <div id="header">
+        <header>
+            <span class="l"><i class="back" event-src="on_click_back"></i></span>
+            <h1>tab</h1>
+            <span class="r"></span>
+        </header>
+    </div>
+    <div id="main">
+        <p class="title com mt40">
+            Tabs组件
+        </p>
+        <pre class="code mb0">
+srcNode{id || class}:指定容器
+initTab{number}：可输.初始显示tab,默认0，限定范围有效性，超出自动返回起始或最后
+direction{v || h}: 切换方向，默认h横向,
+scrollMove{true || false}:是否启用scroll, 默认false禁用
+height{number}:默认auto，限定正数范围，输入无效字符自动转auto,
+activate{func}:可选.切换之后回调，
+start{func}:可选.初始化之后回调，
+PS:<span style="color:red">scrollMove：true后，每个tab容器的子元素都使用scroll独立滚动，因此推荐在tab-content内容里有一个最大的容器并使最小高度100%</span>
+例：
+var tabs = new Tabs({
+srcNode: this.$('#tabs'),
+initTab: "1",
+direction:"h",
+scrollMove: true,
+activate:function(e, to, from){
+// console.log(e+"; "+to+"; "+from);
+},
+start:function(obj,to){
+    
+}
+});
+        </pre>
+        <div id="tabs1" class="ui-tabs">
+            <div class="ui-tabs-title-room">
+                <ul class="ui-tabs-title">
+                    <li><a href="javascript:">默认tab</a></li>
+                    <li><a href="javascript:">纵向tab</a></li>
+                </ul>
+            </div>
+            <div class="ui-tabs-content-main">
+                <div class="ui-tabs-content">
+                    <div id="tabsH-content1">
+                        <div class="" style="height:100%">
+                        tabsH-content2
+                        </div>
+                    </div>
+                    <div id="tabsH-content2">
+                        <div class="">
+                        <script>
+                        for(var i=0;i<50;i++){
+                            document.write('<div>' + i + '</div>');
+                        }
+                        </script>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <p class="title com mt40">
+            Tabs组件-纵向
+        </p>
+        <pre class="code mb0">
+srcNode{id || class}:指定容器
+initTab{string}：可输.初始显示tab,默认0，限定范围有效性，超出自动返回起始或最后
+direction{v || h}: 切换方向，默认h横向,
+scrollMove{true || false}:是否启用scroll, 默认false禁用
+height{number}:默认auto，限定正数范围，输入无效字符自动转auto,
+activate{func}:可选.切换之后回调，
+start{func}:可选.初始化之后回调，
+PS:<span style="color:red">scrollMove：true后，每个tab容器的子元素都使用scroll独立滚动，因此推荐在tab-content内容里有一个最大的容器并使最小高度100%</span>
+例：
+var tabs = new Tabs({
+srcNode: this.$('#tabs'),
+initTab: "1",
+direction:"h",
+scrollMove: true,
+activate:function(e, to, from){
+// console.log(e+"; "+to+"; "+from);
+},
+start:function(obj,to){
+    
+}
+});
+        </pre>
+        <div id="tabs2" class="ui-tabs">
+            <div class="ui-tabs-title-room">
+                <ul class="ui-tabs-title">
+                    <li><a href="javascript:">tabsV-title1</a></li>
+                    <li><a href="javascript:">tabsV-title2</a></li>
+                    <li><a href="javascript:">tabsV-title3</a></li>
+                </ul>
+            </div>
+            <div class="ui-tabs-content-main">
+                <div class="ui-tabs-content">
+                    <div id="tabsV-conten4" style="background:#333; color:#fff;">    
+                        <div class="" style="height:100%">
+                        tabsV-content1
+                        </div>
+                    </div>
+                    <div id="tabsV-conten5" style="background:#666; color:#fff;">
+                        <div class="">
+                        <img src="http://static.zhongan.com/website/store/online/upload/10012001-detail-1462417442498-1.png">
+                        <img src="http://static.zhongan.com/website/store/online/upload/10012001-detail-1462417442559-2.png">
+                        <img src="http://static.zhongan.com/website/store/online/upload/10012001-detail-1462417442620-3.png">
+                        <img src="http://static.zhongan.com/website/store/online/upload/10012001-detail-1462417442688-4.png">
+                        <img src="http://static.zhongan.com/website/store/online/upload/10012001-detail-1462417442751-5.png">
+                        </div>
+                    </div>
+                    <div id="tabsV-conten6" style="background:#999; color:#000;">
+                        <div class="" style="height:100%">
+                        tabsV-content3
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <button class="btn bigbtn" event-src="moreWord|.test-ct2">添加更多内容</button>
+    </div>
+</div>
+<script>
+var zero_config = {
+    controller: '/js/page/comps/tab.js',
+    data: {
+    },
+    env: 'prd'
+};
+</script>
+<script data-main="/js/page/common.js?v=1" src="/build/zero.seed.js"></script>
+</body>
+</html>

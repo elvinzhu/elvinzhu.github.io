@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>基础组件</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" >
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no,minimal-ui">
+    <meta name="format-detection" content="telephone=no,email=no">
+    <script>(window.__setFontSize__=function(){document.documentElement.style.fontSize = Math.min( 750, Math.max(document.documentElement.clientWidth, 320) ) / 320 * 14 + 'px'})()</script>
+    <link rel="stylesheet" href="/css/main.css" />
+    <link rel="stylesheet" href="/css/page/index.css" />
+</head>
+<body>
+<div id="viewport" class="pg-zeroconfig">
+    <div id="header">
+        <header>
+            <span class="l"><i class="back" event-src="on_click_back"></i></span>
+            <h1>zero_config</h1>
+            <span class="r"></span>
+        </header>
+    </div>
+    <div id="main">
+        <p class="sub-title mb10"><label>zero_config</label></p>
+        <label>controller:</label>
+        <div>
+            页面控制器路径，可传入“default”使用控制器基类的基本功能
+        </div>
+        <label>data:</label>
+        <div>
+            页面数据， 支持各种数据类型，会直接传递给controller.run 方法
+            <br><b>类型：</b>anytype
+            <br><b>使用场景：</b>页面需要输出一些需要js处理的数据
+        </div>
+        <label>paths/shim:</label>
+        <div>
+            requirejs 配置项
+            <br><b>类型：</b>object
+        </div>
+        <label>loading:</label>
+        <div>
+            是否自动弹出加载controller 的loading框。
+            <br><b>类型：</b>boolean
+            <br><b>使用场景：</b>页面定制了自己的loading框（仅仅重写loading样式的除外）
+        </div>
+        <label>hideloading:</label>
+        <div>
+            是否自动隐藏加载controller的loading框。
+            <br><b>类型：</b>boolean
+            <br><b>使用场景：</b>页面一开始就需要弹出自己的loading框
+        </div>
+        <label>actions:</label>
+        <div>
+            controler使用default时需要扩展到默认控制器上的方法（<b>注：</b>可以在这里注册run方法）
+            <br><b>类型：</b>object
+            <br><b>使用场景：</b>页面需要少量逻辑，没有必要新添加一个js文件。
+            <br><b>例子：</b>
+<pre class="code pt0">
+&lt;button event-src="doLittle"&gt;实例&lt;/button&gt;
+&lt;script&gt;
+var zero_config = {
+    controller: 'default',
+    data: { },
+    actions:{
+        doLittle: function(e){
+            // this.$('#id')
+        }
+    }
+};
+&lt;/script&gt;
+</pre>
+        </div>
+        <label>env:</label>
+        <div>
+            用于区别编译和非编译环境
+            <br><b>类型：</b>sring
+            <br><b>使用场景：</b>本地开发
+        </div>
+    </div>
+</div>
+<script>
+var zero_config = {
+    controller: 'default',
+    data: {
+    },
+    env: 'prd'
+};
+</script>
+<script data-main="/js/page/common.js?v=1" src="/build/zero.seed.js"></script>
+</body>
+</html>

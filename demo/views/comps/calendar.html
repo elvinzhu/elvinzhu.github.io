@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>基础组件</title>
+    <meta name="keywords" content="demo" />
+    <meta name="description" content="demo" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" >
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no,minimal-ui">
+    <meta name="format-detection" content="telephone=no,email=no">
+    <meta name="author" content="m.zhongan.com">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta content="yes" name="apple-touch-fullscreen">
+    <link rel="apple-touch-icon-precomposed" sizes="57x57" href="/resource/image/apple_icon/zhongan_icon_52.png" />  
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="/resource/image/apple_icon/zhongan_icon_72.png" />  
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/resource/image/apple_icon/zhongan_icon_114.png" />    
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/resource/image/apple_icon/zhongan_icon_144.png" /> 
+    <link rel="Shortcut Icon" type="image/x-icon" href="/resource/image/apple_icon/zhongan_icon_144.png" />
+    <script>(window.__setFontSize__=function(){document.documentElement.style.fontSize = Math.min( 640, Math.max(document.documentElement.clientWidth, 320) ) / 320 * 14 + 'px'})()</script>
+    <link rel="stylesheet" href="/css/main.css" />
+    <link rel="stylesheet" href="/css/page/index.css" />
+</head>
+<body>
+<div id="viewport">
+    <div id="header">
+        <header>
+            <span class="l"><i class="back" event-src="on_click_back"></i></span>
+            <h1>日历</h1>
+            <span class="r"></span>
+        </header>
+    </div>
+    <div id="main">
+        <p class="sub-title mb10"><label>日历组件 ui/ui.calendar</label></p>
+        <p class="title static">monthDiff(date1, date2)</p>
+        <small>计算两个日期之间间隔的月数</small>
+        <p class="title static mt10">toFirstDay(date)</p>
+        <small>将日期转换成当月的第一天</small>
+        <p class="title static mt10">format(date)</p>
+        <small>将日期转换成 0000-00-00 格式</small>
+        <p class="title static mt10">removeTime(date)</p>
+        <small>将日期的时间部分去掉</small>
+        <p class="title static mt10">addYear(date, num)</p>
+        <small>增加年（num可为负值）</small>
+        <p class="title static mt10">addMonth(date, num)</p>
+        <small>增加月（num可为负值）</small>
+        <p class="title static mt10">addDate(date, num)</p>
+        <small>增加天（num可为负值）</small>
+        <p class="mt30">
+            示例： <input id="date" readonly type="text" class="w100"/><button class="ml5" event-src="showCalendar">显示日历</button>
+        </p>
+        <pre class="code">
+@param minDate{string|Date}: 最小可选日期（默认当天）
+@param days{int}: 从最小日期算起，能被选择的天数
+@param months{int}: 同days, 但是单位是月
+@param maxDate{date|string}: 最大可选日期
+@param activeDate{date|string}: 默认选中的日期
+@param select{function(strdate)}: 用户选中日期后的回调（参数为0000-00-00格式的日期）
+@param header{bool|int}: bool： 页面是否有高度48px的头部  int： 有头部并且提供头部高度
+注： days，months，maxDate 任选其一，优先级 maxDate > days > months
+都不提供的话，默认months=6, 即半年
+new Calendar({
+    minDate: now,
+    //days: 3,  // 可选
+    months: 6,// 可选
+    //maxDate: new Date(now.setMonth(now.getMonth()+6)),// 可选
+    //activeDate: '2016-07-29',// 可选
+    select: function( date ){
+        self.$('#date').val(date);
+        this.hide();
+    },
+    header: true
+});
+        </pre>
+    </div>
+</div>
+<script>
+var zero_config = {
+    controller: '/js/page/comps/calendar.js',
+    data: {
+    },
+    env: 'prd'
+};
+</script>
+<script data-main="/js/page/common.js?v=1" src="/build/zero.seed.js"></script>
+</body>
+</html>

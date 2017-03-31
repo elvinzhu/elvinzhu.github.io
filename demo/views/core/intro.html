@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Zero框架介绍</title>
+    <meta name="keywords" content="demo" />
+    <meta name="description" content="demo" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" >
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no,minimal-ui">
+    <meta name="format-detection" content="telephone=no,email=no">
+    <meta name="author" content="m.zhongan.com">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta content="yes" name="apple-touch-fullscreen">
+    <script>(window.__setFontSize__=function(){document.documentElement.style.fontSize = Math.min( 640, Math.max(document.documentElement.clientWidth, 320) ) / 320 * 14 + 'px'})()</script>
+    <link rel="stylesheet" href="/css/main.css" />
+    <link rel="stylesheet" href="/css/page/index.css" />
+    <style>
+        ul{
+            list-style: decimal;
+        }
+    </style>
+</head>
+<body>
+<div id="viewport">
+    <div id="header">
+        <header>
+            <span class="l"><i class="back" event-src="on_click_back"></i></span>
+<!--            <span class="l"><i class="menu" onclick="_toggleMenu_()"><em></em></i></span>-->
+            <h1>Zero框架介绍</h1>
+            <span class="r"></span>
+        </header>
+    </div>
+   
+    <div id="main">
+        <p><label>框架自诉：</label></p>
+        <p>目前公司还不能使用单页应用，仍然是采用服务端输出html+表单提交的方式 -- 这就决定了我们在技术选型上无法使用目前很多流行的东西，比如vuejs，reactjs 。。</p>
+        <p class="mt10"><label>名词解释：</label></p>
+        <b>Zero</b> 框架名称。只要引用了zero.seed.js 的页面都会有这个全局对象。 这个对象上面挂靠了一些基础组件的快捷使用方式比如 Zero.showLoading()<br>
+        <p class="mt10"><label>牵涉文件：</label></p>
+        <b>zero.seed.js</b> 框架js文件，里面包含Zepto、underscorejs、基础组件、BaseController及操作localstore的类. 提供未压缩的版本zero.seed.dev.js.<br>
+        <b>main.css</b> 框架css文件，里面包含基础组件样式，还有一些预定义好的class， 比如.hide, .mt10, pb10 .... 建议所有人都应该看一遍
+        <p class="mt10"><label>使用方式：</label></p>
+        <small>step 1: 新建html文件。head内引用main.css，底部引用zero.seed.js. 另外头部需要加入如下js来动态改变根元素的font-size</small>
+        <pre class="code">
+&lt;script&gt;(window.__setFontSize__=function(){document.documentElement.style.fontSize = Math.min( 640, Math.max(document.documentElement.clientWidth, 320) ) / 320 * 14 + 'px'})()&lt;/script&gt;
+        </pre>
+        <small>step 2: 配置zero_config</small>
+        <img src="/images/page/config.jpg" class="w-100"/>
+        <small>step 3:编写controller。</small>
+        <pre class="code">
+define( [ 'controller' ], function( BaseController ){
+    'use strict';
+    var controller = BaseController.extend({
+        // 入口函数 run
+        run: function( data ){
+            // 这里的data 就是 zero_config 的 data
+        },
+        
+        // 可以通过这种方式添加辅助方法
+        doSomething1: function(){
+        
+        }
+    });
+    
+    var pt = controller.prototype;
+    
+    // 也可以通过这种方式添加辅助方式
+    pt.doSomething2 = function(){
+        
+    }
+    // [event-src]: 事件处理函数, e 参数必须添加
+    pt.eventHandler = function( e ){
+    
+    }
+    
+    return controller;
+})
+        </pre>
+        <p class="mt10"><label>规范要求：</label></p>
+        <ul class="ml20">
+            <li>元素布局宽度推荐使用rem作为单位，height推荐自适应，其他推荐使用px单位</li>
+            <li>所有js采用amd方式编写，使用requirejs作为加载器</li>
+            <li>一个页面对应一个js controller， 但页面无须自己添加script来引用，这个工作由zero.seed.js来做</li>
+            <li>zero.seed.js 提供BaseController供每个页面controller继承</li>
+            <li>zero.seed.js 提供tast, cofirm, loading等基础组件供页面controller使用</li>
+            <li id="zero_config">每个页面需要提供一个全局的zero_config对象(如果需要js的话)，告诉zero.seed.js当前页面的controller地址及其他配置信息、需要js处理的数据</li>
+            <li>ajax请求建议都是用 Zero.ajax 来完成，因为里面提供了基本的错误处理</li>
+            <li>页面事件绑定能用event-src的尽量使用这个，满足不了的情况下再使用其他方式</li>
+            <li>页面元素选择不能使用$进行全局查找，一律在controler里面使用this.$('selector')或者this.$el.find的方式</li>
+            <li>如果出现需要js组装html的情况，请使用underscore模块来做（可配合event-src做事件绑定）</li>
+        </ul>
+       
+        <p class="mt10"><label>基本框架图（大家凑合看看）：</label></p>
+        <p style="overflow:auto;height:300px;width:100%">
+            <img src="/images/page/arch.png" style="height:100%"/>
+        </p>
+        <p class="mt10"><label>框架解决的问题：</label></p>
+        <ul class="ml20">
+            <li>使大家用统一的方式进行项目开发</li>  
+            <li>很大程度上约束了全局变量满天飞的情况</li>  
+            <li>提供了很多方便使用的组件</li>  
+            <li>提供了灵活的事件绑定方式</li>
+        </ul>
+    </div>
+</div>
+<script>
+var zero_config = {
+    controller: '/js/page/core/intro.js',
+    data: {
+        num: 123
+    },
+    env: 'prd',
+    shim:{},
+    paths:{}
+};
+</script>
+<script data-main="/js/page/common.js" src="/build/zero.seed.js" type="text/javascript"></script>
+</body>
+</html>

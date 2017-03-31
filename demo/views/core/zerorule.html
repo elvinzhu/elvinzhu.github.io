@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>基础组件</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" >
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no,minimal-ui">
+    <meta name="format-detection" content="telephone=no,email=no">
+    <script>(window.__setFontSize__=function(){document.documentElement.style.fontSize = Math.min( 750, Math.max(document.documentElement.clientWidth, 320) ) / 320 * 14 + 'px'})()</script>
+    <link rel="stylesheet" href="/css/main.css" />
+    <link rel="stylesheet" href="/css/page/index.css" />
+</head>
+<body>
+<div id="viewport" class="pg-zerorule">
+   <div id="header">
+        <header>
+            <span class="l"><i class="back" event-src="on_click_back"></i></span>
+            <h1>zero规范</h1>
+            <span class="r"></span>
+        </header>
+    </div>
+    <div id="main">
+        <p class="sub-title mb10"><label>zero规范</label></p>
+        <label>CSS:</label>
+        <ol>
+           <li>每个页面都应该有一个顶级class，放在#viewport上，命名遵循 .pg-{页面名称} 规则， 例 .pg-index。不同页面使用不同页面名称</li>
+           <li>页面非通用样式必须嵌套在页面class（即.pg- 开头class）下面。嵌套建议不要超过四层</li>
+        </ol>
+        <label>JS:</label>
+        <ol>
+            <li>
+                原则上JS只能存在controller里面
+            </li>
+            <li>
+                controller中供event-src使用的方法必须添加 e 参数， 即 pt.fnName = function(e, ... ){}
+            </li>
+            <li>
+                za_config.actions 是为了避免只需几行代码就需要新建一个js文件问题。如果你维护别人的页面的时候，js代码增加很多，请新建js文件，把所有js挪进去
+            </li>
+        </ol>
+    </div>
+</div>
+<script>
+var zero_config = {
+    controller: 'default',
+    data: {
+    },
+    env: 'prd'
+};
+</script>
+<script data-main="/js/page/common.js?v=1" src="/build/zero.seed.js"></script>
+</body>
+</html>

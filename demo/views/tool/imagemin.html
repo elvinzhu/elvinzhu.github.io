@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>基础组件</title>
+    <meta name="keywords" content="demo" />
+    <meta name="description" content="demo" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" >
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no,minimal-ui">
+    <meta name="format-detection" content="telephone=no,email=no">
+    <meta name="author" content="m.zhongan.com">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta content="yes" name="apple-touch-fullscreen">
+    <script>(window.__setFontSize__=function(){document.documentElement.style.fontSize = Math.min( 750, Math.max(document.documentElement.clientWidth, 320) ) / 320 * 14 + 'px'})()</script>
+    <link rel="stylesheet" href="/css/main.css" />
+    <link rel="stylesheet" href="/css/page/index.css" />
+</head>
+<body>
+<div id="viewport">
+   <div id="header">
+        <header>
+            <span class="l"><i class="back" event-src="on_click_back"></i></span>
+            <h1>图片压缩工具</h1>
+            <span class="r"></span>
+        </header>
+    </div>
+    <div id="main">
+        <p class="sub-title mb10"><label>图片压缩工具 tool/imagemin</label></p>
+        <p class="title mt10">Imagemin.readFile(fileElement,resultCallback)：读取文件，读取成功之后给resultCallback传递base64字符串, 如果没有选择文件则传递“no file”</p>
+        <small>
+            <i class="param">fileElement {FileElement}</i>input[type=file]DOM元素<br>
+            <i class="param">resultCallback {function}</i>回调函数<br>
+        </small>
+        <p class="title mt10">Imagemin.compress(img,width,height,quality)：压缩图片至指定宽高</p>
+        <small>
+            <i class="param">img {ImageElement|Image}</i>图片DOM元素<br>
+            <i class="param">width {int}</i>图片宽<br>
+            <i class="param">height {int}</i>图片高<br>
+            <i class="param">quality {float}</i>图片质量(0~1), 默认：0.6<br>
+        </small>
+        <p class="title mt10">Imagemin.compressWithRatio(img,settings)：按原图片尺寸比例压缩图片至指定最大宽/高</p>
+        <small>
+            <i class="param">img {ImageElement|Image}</i>图片DOM元素<br>
+            <i class="param">settings {object}</i>压缩设置<br>
+            <i class="param">settings.maxWidth {int}</i>图片最大宽<br>
+            <i class="param">settings.maxHeight {int}</i>图片最大高<br>
+            <i class="param">settings.quality {float}</i>图片质量(0~1), 默认：0.6<br>
+        </small>
+    </div>
+</div>
+<script>
+var zero_config = {
+    controller: 'default',
+    data: {
+    },
+    env: 'prd'
+};
+</script>
+<script data-main="/js/page/common.js?v=1" src="/build/zero.seed.js"></script>
+</body>
+</html>

@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>基础组件</title>
+    <meta name="keywords" content="demo" />
+    <meta name="description" content="demo" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" >
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no,minimal-ui">
+    <meta name="format-detection" content="telephone=no,email=no">
+    <meta name="author" content="m.zhongan.com">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta content="yes" name="apple-touch-fullscreen">
+    <link rel="apple-touch-icon-precomposed" sizes="57x57" href="/resource/image/apple_icon/zhongan_icon_52.png" />  
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="/resource/image/apple_icon/zhongan_icon_72.png" />  
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/resource/image/apple_icon/zhongan_icon_114.png" />    
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/resource/image/apple_icon/zhongan_icon_144.png" /> 
+    <link rel="Shortcut Icon" type="image/x-icon" href="/resource/image/apple_icon/zhongan_icon_144.png" />
+    <script>(window.__setFontSize__=function(){document.documentElement.style.fontSize = Math.min( 640, Math.max(document.documentElement.clientWidth, 320) ) / 320 * 14 + 'px'})()</script>
+    <link rel="stylesheet" href="/css/main.css" />
+    <link rel="stylesheet" href="/css/page/index.css" />
+</head>
+<body>
+<div id="viewport">
+    <div id="header">
+        <header>
+            <span class="l"><i class="back" event-src="on_click_back"></i></span>
+<!--            <span class="l"><i class="menu" onclick="_toggleMenu_()"><em></em></i></span>-->
+            <h1>基础组件</h1>
+            <span class="r"></span>
+        </header>
+    </div>
+    <div id="main">
+        <p class="title com">
+            Toast基础组件 <button id="Toast" event-src="showToast1">try</button>
+        </p>
+        <small>Zero.showToast(msg, interval, callback);</small>
+        <pre class="code">
+@param: msg{string}:消息内容
+@param interval{int}：可选.显示多久时间
+@param callback{func}:可选.隐藏之后回调
+例：
+Zero.showToast( '我是Toast', 2 , function(){
+    // alert( 'auto closed' );
+});
+        </pre>
+        <p class="title com">
+            Toast基础组件2 <button id="Toast" event-src="showToast2">try</button>
+        </p>
+        <small>Zero.showResult(msg, obj);</small>
+        <pre class="code">
+@param: msg{string}:消息内容
+@param obj.interval{int}：可选.显示多久时间
+@param obj.callback{func}:可选.隐藏之后回调
+@param obj.icon{func}:显示的icon   ok：对号，fail：叉号，其他自定义class名称
+        </pre>
+        <p class="title com">
+            Mask基础组件<button id="Mask" event-src="showMask">try</button>
+        </p>
+        <small>Zero.showMask(options)</small>
+        <pre class="code">
+@param type{string}: 可选值：'light'(透明度0.1),'lighter'（透明度0.01）默认半透明
+@param touchHide{bool}: 是否启用触摸隐藏
+@param noTouch{bool}:是否阻止TouchMove事件
+@param callback{bool}:touchHide=true的时候，隐藏时的回调
+Zero.showMask({
+    //type: '',
+    touchHide:true
+    //noTouch: true
+    callback:function( ){
+        Zero.showToast('Hi there！&lt;br&gt;You clicked me.');
+    }
+});
+        </pre>
+        <p class="title com">
+            Loading基础组件
+            <button id="Loading" event-src="showLoading1">show</button>
+        </p>
+        <small>Zero.showLoading(msg, options);</small>
+        <pre class="code">
+@param msg{string}:显示的文字. 默认 “加载中”
+@param options.needMask{bool}:是否需要遮罩层
+Zero.showLoading( '玩儿命加载中...' );
+// Zero.hideLoading();
+        </pre>
+        <p class="title com">
+            Confirm基础组件
+            <button id="Confirm" event-src="showConfirm1">默认</button>
+            <button id="Confirm-c" event-src="showConfirm2">自定义</button>
+            <button id="Confirm-one" event-src="showConfirm3">一个按钮</button>
+            <button event-src="showConfirm4">带标题</button>
+            <button class="toggle">Toggle Code</button>
+        </p>
+        <pre hide class="code">
+// 自定义
+Zero.showConfirm( '我是Confirm', {
+    cancel:{ 
+        text:  'cancel',
+        callback: function(){
+            this.hide();
+        }
+    },
+    ok:{
+        text: 'ok',
+        callback: function(){
+            this.hide();
+        }
+    },
+    // optional
+    btns:[
+        {
+            text: 'Go',
+            callback: function(){
+                this.hide();
+            }
+        }
+    ]
+} );
+// 默认
+Zero.showConfirm( '我是Confirm', {
+    ok:{
+        callback: function(){
+            this.hide();
+        }
+    }
+});
+// 一个按钮
+Zero.showConfirm( '我是Confirm', {
+    ok: false, // 注意这里是 false
+    cancel:{
+        text:'好',
+        callback: function(){
+            this.hide();
+        }
+    }
+});
+        </pre> 
+    </div>
+</div>
+<script>
+var zero_config = {
+    controller: '/js/page/comps/index.js',
+    data: {
+        // any thing here will be shipped to your controller
+    },
+    env: 'dev'
+};
+</script>
+<script data-main="/js/page/common.js" src="/build/zero.seed.js" type="text/javascript"></script>
+</body>
+</html>

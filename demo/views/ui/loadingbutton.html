@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>基础组件</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" >
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no,minimal-ui">
+    <meta name="format-detection" content="telephone=no,email=no">
+    <script>(window.__setFontSize__=function(){document.documentElement.style.fontSize = Math.min( 750, Math.max(document.documentElement.clientWidth, 320) ) / 320 * 14 + 'px'})()</script>
+    <link rel="stylesheet" href="/css/main.css" />
+    <link rel="stylesheet" href="/css/page/index.css" />
+</head>
+<body>
+<div id="viewport" class="pg-ui-inputclear">
+   <div id="header">
+        <header>
+            <span class="l"><i class="back" event-src="on_click_back"></i></span>
+            <h1>加载更多组件</h1>
+            <span class="r"></span>
+        </header>
+    </div>
+    <div id="main">
+        <p class="sub-title mb10"><label>LoadingButton组件  ui/ui.loadingbutton</label></p>
+        <p class="title constructor">new LoadingButton(target, options)</p>
+        <p class="mt20">
+            实例1：
+        </p>
+        <div id="box">
+            <button id="btnSubmit" style="background-color:#6ca5ff;line-height:44px;border:none" class="white w-100 fz16 bdr3">
+                提交
+            </button>
+        </div>
+    </div>
+</div>
+<script>
+var zero_config = {
+    controller: '/js/page/ui/loadingbutton.js',
+    data: {
+    },
+    env: 'prd'
+};
+</script>
+<script data-main="/js/page/common.js?v=1" src="/build/zero.seed.js"></script>
+</body>
+</html>

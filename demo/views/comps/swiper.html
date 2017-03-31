@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>swiper组件</title>
+    <meta name="keywords" content="demo" />
+    <meta name="description" content="demo" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" >
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no,minimal-ui">
+    <meta name="format-detection" content="telephone=no,email=no">
+    <meta name="author" content="m.zhongan.com">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta content="yes" name="apple-touch-fullscreen">
+    <link rel="apple-touch-icon-precomposed" sizes="57x57" href="/resource/image/apple_icon/zhongan_icon_52.png" />  
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="/resource/image/apple_icon/zhongan_icon_72.png" />  
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/resource/image/apple_icon/zhongan_icon_114.png" />    
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/resource/image/apple_icon/zhongan_icon_144.png" /> 
+    <link rel="Shortcut Icon" type="image/x-icon" href="/resource/image/apple_icon/zhongan_icon_144.png" />
+    <script>(window.__setFontSize__=function(){document.documentElement.style.fontSize = Math.min( 640, Math.max(document.documentElement.clientWidth, 320) ) / 320 * 14 + 'px'})()</script>
+    <link rel="stylesheet" href="/css/main.css" />
+    <link rel="stylesheet" href="/css/page/index.css" />
+</head>
+<body>
+<div id="viewport">
+    <div id="header">
+        <header>
+            <span class="l"><i class="back" event-src="on_click_back"></i></span>
+            <h1>swiper</h1>
+            <span class="r"></span>
+        </header>
+    </div>
+    <div id="main">
+        <p class="title com mt40">
+            Swiper组件
+        </p>
+        <pre class="code mb0">
+srcNode{id || class}:指定容器
+initTab{number}：可输.初始显示tab,默认0，限定范围有效性，超出自动返回起始或最后
+direction{v || h}: 切换方向，默认h横向
+height{number}:默认auto，限定正数范围，输入无效字符自动转auto,
+callback{func}:可选.隐藏之后回调
+例：
+var tabs = new Tabs({
+srcNode: this.$('#tabs'),
+initTab: "1",
+direction:"h",
+activate:function(e, to, from){
+// console.log(e+"; "+to+"; "+from);
+}
+});
+        </pre>
+        <div class="ui-swiper-room">
+            <div class="ui-swiper-container">
+                <div class="ui-swiper-wrapper">
+                    <div class="ui-swiper-slide">1111</div>
+                    <div class="ui-swiper-slide">2222</div>
+                    <div class="ui-swiper-slide">3333</div>
+                </div>
+            </div>
+        </div>
+        <div id="testSwiper"></div>
+    </div>
+</div>
+<script>
+var zero_config = {
+    controller: '/js/page/comps/swiper.js',
+    data: {
+    },
+    env: 'prd'
+};
+</script>
+<script data-main="/js/page/common.js?v=1"  src="/build/zero.seed.js"></script>
+</body>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>基础组件</title>
+    <meta name="keywords" content="demo" />
+    <meta name="description" content="demo" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" >
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no,minimal-ui">
+    <meta name="format-detection" content="telephone=no,email=no">
+    <meta name="author" content="m.zhongan.com">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta content="yes" name="apple-touch-fullscreen">
+    <link rel="apple-touch-icon-precomposed" sizes="57x57" href="/resource/image/apple_icon/zhongan_icon_52.png" />  
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="/resource/image/apple_icon/zhongan_icon_72.png" />  
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/resource/image/apple_icon/zhongan_icon_114.png" />    
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/resource/image/apple_icon/zhongan_icon_144.png" /> 
+    <link rel="Shortcut Icon" type="image/x-icon" href="/resource/image/apple_icon/zhongan_icon_144.png" />
+    <script>(window.__setFontSize__=function(){document.documentElement.style.fontSize = Math.min( 640, Math.max(document.documentElement.clientWidth, 320) ) / 320 * 14 + 'px'})()</script>
+    <link rel="stylesheet" href="/css/main.css" />
+    <link rel="stylesheet" href="/css/page/index.css" />
+</head>
+<body>
+<div id="viewport">
+    <div id="header">
+        <header>
+            <span class="l"><i class="back" event-src="on_click_back"></i></span>
+            <h1>select</h1>
+            <span class="r"></span>
+        </header>
+    </div>
+    <div id="main" class="tc">
+        <button event-src="showSelect|0">单列</button>
+        <button event-src="showSelect|1">2列</button>
+        <button event-src="showSelect|2">3列</button>
+        <p id="valueArea" class="pt40 tc">
+            
+        </p>
+    </div>
+</div>
+<script>
+var zero_config = {
+    controller: '/js/page/comps/select.js',
+    data: {
+    },
+    env: 'prd'
+};
+</script>
+<script data-main="/js/page/common.js?v=1" src="/build/zero.seed.js"></script>
+</body>
+</html>

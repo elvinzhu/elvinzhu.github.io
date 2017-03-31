@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>基础组件</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" >
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no,minimal-ui">
+    <meta name="format-detection" content="telephone=no,email=no">
+    <script>(window.__setFontSize__=function(){document.documentElement.style.fontSize = Math.min( 750, Math.max(document.documentElement.clientWidth, 320) ) / 320 * 14 + 'px'})()</script>
+    <link rel="stylesheet" href="/css/main.css" />
+    <link rel="stylesheet" href="/css/page/index.css" />
+</head>
+<body>
+<div id="viewport" class="pg-ui-inputclear">
+   <div id="header">
+        <header>
+            <span class="l"><i class="back" event-src="on_click_back"></i></span>
+            <h1>模板系统</h1>
+            <span class="r"></span>
+        </header>
+    </div>
+    <div id="main">
+        <p class="sub-title mb10"><label>模板系统</label></p>
+        <strong>zero集成了underscorejs，所以默认使用underscore的模板引擎。 controller 基类提供了 <a href="../core/controller.html#T">T 方法</a>，简化开发</strong>
+        <p class="mt20">underscore模板：<br>
+            <small>可放在script[type=zero-template]标签里面</small>
+        </p>
+        <textarea id="txtTpl" class="w-100" rows="6"></textarea>
+        <p class="mt20">数据：</p>
+        <textarea id="data" class="w-100" rows="4">
+{
+    title: '我喜欢吃的水果',
+    list: ['苹果','香蕉','梨','菠萝','榴莲']
+}
+        </textarea>
+        <button type="button" class="mt20" event-src="render">生成</button>
+        <p>结果：</p>
+        <div id="result"></div>
+    </div>
+<script id="demoTpl" type="text/zero-template">
+<p><%=vm.title%></p>
+<ul>
+<%_.each(vm.list,function(item){%>
+    <li><%=item%></li>
+<%})%>
+</ul>
+</script>
+</div>
+<script>
+var zero_config = {
+    controller: '/js/page/core/template.js',
+    data: {
+    },
+    env: 'prd'
+};
+</script>
+<script data-main="/js/page/common.js?v=1" src="/build/zero.seed.js"></script>
+</body>
+</html>

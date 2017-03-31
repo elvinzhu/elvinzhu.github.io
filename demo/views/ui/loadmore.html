@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>基础组件</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" >
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no,minimal-ui">
+    <meta name="format-detection" content="telephone=no,email=no">
+    <script>(window.__setFontSize__=function(){document.documentElement.style.fontSize = Math.min( 750, Math.max(document.documentElement.clientWidth, 320) ) / 320 * 14 + 'px'})()</script>
+    <link rel="stylesheet" href="/css/main.css" />
+    <link rel="stylesheet" href="/css/page/index.css" />
+</head>
+<body>
+<div id="viewport" class="pg-ui-inputclear">
+   <div id="header">
+        <header>
+            <span class="l"><i class="back" event-src="on_click_back"></i></span>
+            <h1>加载更多组件</h1>
+            <span class="r"></span>
+        </header>
+    </div>
+    <div id="main">
+        <p class="sub-title mb10"><label>加载更多组件 ui/ui.loadmore</label></p>
+        <p class="title constructor">new LoadMore(options)</p>
+        <small><i class="param">options.container {HtmlElement}</i>目标容器</small>
+        <p class="bold mt10">注：多实例，并且都是scroll模式下，隐藏实例后请调用disabe方式禁止监听onscroll事件</p>
+        <p class="title mt10">enable(enable)</p>
+        <small><i class="param">enable {bool}</i>是否启用监听onscoll事件</small>
+        <p class="mt20">
+            实例1：
+        </p>
+        <div id="box">
+            
+        </div>
+        <div id="loadmore"></div>
+    </div>
+    <script id="tpl" type="text/zero-template">
+    <%_.each(vm, function(item){%>
+    <p>Name:<%=item.name%>,<%=item.age%>岁</p>
+    <%})%>
+    </script>
+</div>
+<script>
+var zero_config = {
+    controller: '/js/page/ui/loadmore.js',
+    data: {
+    },
+    env: 'prd'
+};
+</script>
+<script data-main="/js/page/common.js?v=1" src="/build/zero.seed.js"></script>
+</body>
+</html>

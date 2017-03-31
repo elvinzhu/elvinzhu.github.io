@@ -1,0 +1,27 @@
+(function(){
+    
+    var ret = {
+        code: 0,
+        msg: '',
+        data: []
+    };
+    
+    var hanz = ['朱','永','玉','张','翔','徐','王','利','军','小','翠'];
+    var len =  Math.ceil(Math.random()*30);
+    
+    len = Math.min(len, 10);
+    
+    var randomHan = function(){
+        return hanz[ Math.floor(Math.random()*hanz.length)];
+    }
+    
+    for(var i=0;i<len;i++){
+        ret.data.push({
+            name: randomHan()+randomHan(),
+            age: Math.round(Math.random()*10+20)
+        })
+    }
+    
+    return ret;
+    
+})()

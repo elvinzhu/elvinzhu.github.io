@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>基础组件</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" >
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no,minimal-ui">
+    <meta name="format-detection" content="telephone=no,email=no">
+    <script>(window.__setFontSize__=function(){document.documentElement.style.fontSize = Math.min( 750, Math.max(document.documentElement.clientWidth, 320) ) / 320 * 14 + 'px'})()</script>
+    <link rel="stylesheet" href="/css/main.css" />
+    <link rel="stylesheet" href="/css/page/index.css" />
+</head>
+<body>
+<div id="viewport" class="pg-core-viewmodel">
+    <div id="header">
+        <header>
+            <span class="l"><i class="back" event-src="on_click_back"></i></span>
+            <h1>view model</h1>
+            <span class="r"></span>
+        </header>
+    </div>
+    <div id="main">
+        <p class="sub-title mb10"><label>ViewModel  tool/form</label></p>
+        <strong>
+           ViewModel特点：<br>
+           1. 允许你以访问对象属性的方式设置、读取页面数据<br>
+           2. 非实时双向数据流（非实时：用户页面输入不会实时修改Model数据，只有读的时候保证是最新的值）<br>
+           3. 集成表单验证
+           <br><br>注： 
+           <br>1. BaseController中增加了一个set_model事件处理函数来配合Model的使用<a href="/views/core/controller.html#set_model"> 传送门</a>
+           <br>2. 如果要实现有值才验证格式，无值不验证，请将required设置成false
+           <br>3. 建议表单字段使用z-bind='value'(包括默认)，cloneForm 只输出z-bind='value'的值
+        </strong>
+        <p class="mt20">使用方式：</p>
+        <hr>
+        <pre class="code mt0">
+// html
+&lt;input z-model="name" z-label="姓名" type="text"/&gt;
+
+// js
+define( [ 'controller', 'tool/form'], function( BaseController, Form ){
+    
+    var controller = BaseController.extend({
+        
+        run: function( data ){
+            
+            this.Model = new Form.ViewModel(this);
+            this.Model.on('change', function(data){
+                
+            }).on('error', function(ev){
+                Zero.showToast(ev.msg)
+            })
+        }
+    });
+        </pre>
+        然后你可以通过this.Model.name这种方式读取或者设置值了。
+        <br>也可以按照需要，额外添加 z-label, z-messages, z-excludes, z-bind, z-deps, z-rules, z-filters 等一系列属性
+        <p><strong>【z-model】【必选】：</strong></p>
+        <p>
+            提供该字段的属性名称。
+            <br><small>示例： z-model="name"</small>
+        </p>
+        <p><strong>【z-label】【可选】：</strong></p>
+        <p>
+            提供该字段的名字，方便给出默认错误提示,比如“请输入{label}”、“输入的{label}格式不正确”、“输入的{label}无效”等。 如果不提供该属性，给出的默认提示只有 “请完善页面信息”、“请正确填写页面信息”
+            <br><small>示例： z-label="姓名"</small>
+        </p>
+        <p><strong>【z-messages】【可选】：</strong></p>
+        <p>
+            完全个性化提示信息。包含项需是z-rules提供的验证规则项的全集或子集
+            <br><small>示例： z-messages="{required: '亲，请先填写姓名哦', idcard: '大哥，你身份证填写的不对啊'}"</small>
+        </p>
+        <p><strong>【z-rules】【可选】：</strong></p>
+        <p>
+            对该字段应用的验证规则项，按需要可添加任意数量个。
+            <br><small>示例： z-rules="{num:true, max:65}"</small>
+            <br>注意：当 z-bind="value" 时字段默认必填，否则默认非必填。 如果要改变默认，请给required规则, 例：z-rules="{required:false, max:65}"
+        </p>
+        <p><strong>【z-deps】【可选】：</strong></p>
+        <p>
+            对某个验证规则提供验证依赖。
+            <br><small>示例： z-deps="{_all_:'this.needInvoice'}"</small><br>
+            该示例使用了内置的_all_项，表示如果this.needInvoice为false 的时候所有验证规则都不执行。如果只是想通过这种方式控制某项验证规则请使用对应规则名称作为项即可。例：z-deps="{num:'this.XX>XX'}"
+            <br>注意：项的值是单引号下的字符串。this 指向当前model，即条件执行的上下文是当前model，可以是对model的某个属性的判断也可以是对model的某个方法的调用。
+        </p>
+        <p><strong>【z-bind】【可选】：</strong></p>
+        <p>
+            用于绑定属性值的取值位置，可以是任意自定义属性，也可以是DOM元素自带属性，表单元素默认是value属性，非表单元素是innerHTML属性, A默认href，IMG默认src。
+            <br><small>示例： z-bind="text"
+            <br>默认: 
+            <br>input[type=checkbox | radio]: "checked"
+            <br>input[type={其他}] | textarea | select: "value"
+            <br>img: "src"
+            <br>a: "href"</small>
+            <br>注意：text->innerText, html->innerHTML
+        </p>
+        <p><strong>【z-excludes】【可选】：</strong></p>
+        <p>
+            排除在验证之外的属性值，即如果属性值在z-excludes标记之内的话，等同于空值
+            <br><small>示例： z-excludes="-1"</small>
+            <br>注意：多个值使用逗号隔开
+        </p>
+        <p><strong>【z-filters】【可选】：</strong></p>
+        <p>
+            属性值过滤器，按需要可添加任意数量个。每个过滤器分为读和写（显示）两部分。<br>
+            读：就是读取该属性的时候才会应用<br>
+            写：就是赋值该属性的时候才会应用
+            <br><small>示例： z-filters="{trim: true}"</small>
+            <br>注意：每个属性默认都会有个trim过滤器，用于去除空格，如果不需要去除空格请使用 trim:false
+        </p>
+        <p class="mt20">内置验证规则：</p><hr>
+        <p>
+            <label>required</label>：必填验证。默认：z-bind="value" 时为true否则为false<br>
+            <label>equal</label>：验证是否和某一项相等。值需是某个属性名称。例：equal: 'pwd'<br>
+            <label>idcard</label>：身份证格式。<br>
+            <label>int</label>：正整数。例：int: true, 如需指定位数 int：6 表示6位整数<br>
+            <label>number</label>：数字<br>
+            <label>range</label>：数字范围, 不包括首尾。例：range:{min:15,max:65}<br>
+            <label>min</label>：最小值(包括min)。例：min:18<br>
+            <label>max</label>：最大值(包括max)。<br>
+            <label>date</label>：日期。<br>
+            <label>mobile</label>：手机号码。<br>
+            <label>tel</label>：座机号码。<br>
+            <label>phone</label>：手机号码 or 座机号码。<br>
+            <label>email</label>：邮箱。<br>
+            <label>minlen</label>：最小字符长度。<br>
+            <label>maxlen</label>：最大字符长度。<br>
+            <label>postcode</label>：邮编。<br>
+            <label>regexp</label>：正则。<br>
+        </p>
+        <p class="mt20">内置过滤器：</p><hr>
+        <p>
+            <label>formatDate</label>：格式化日期, 只有写部分。例：formatDate:'yyyy-MM-dd'<br>
+            <label>fixed</label>：格式化小数点位数，只有写部分。例：fixed:2<br>
+            <label>round</label>：四舍五入，只有写部分。<br>
+            <label>trim</label>：去除空格，只有读部分。<br>
+            <label>trybind</label>：尝试读取另一个属作为值，只有读部分。<br>
+        </p>
+        <p class="mt20">自定义验证规则：</p><hr>
+                <pre class="code mt0">
+// 基本格式
+Filters.add('rule_name', callback);
+
+// 添加到Model上，仅该Model能使用
+this.Model.Rules.add('rule_name', function(el, value, label, errormsg, ruleValue){
+    // 这里写你的验证逻辑
+    // return 'default'; // 等同于 "请正确填写页面信息"
+    return "错误消息";// 返回空表示验证通过，否则返回出错消息
+})
+// 添加到全局上，所有Model都可用
+Form.Rules.add('rule_name', function(el, value, label, errormsg, ruleValue){
+    // 这里写你的验证逻辑
+    // return 'default'; // 等同于 "请正确填写页面信息"
+    return "错误消息";// 返回空表示验证通过，否则返回出错消息
+})
+        </pre>
+        <label>@param el {DOMElement}:</label> DOM元素<br>
+        <label>@param value {string}:</label> 值<br>
+        <label>@param label {string}:</label> z-label值<br>
+        <label>@param errormsg {string}:</label> 该规则对应的z-messages<br>
+        <label>@param ruleValue {anytype}:</label> z-rules中给该规则的值，例子：myrule: {a:'blalba', b:2} 则ruleValue={a:'blalba', b:2}， 可为任意数据类型<br>
+        <strong>注：所有rule的this均指向当前viewmodel</strong>
+        <p class="mt20">自定义过滤器：</p><hr>
+                <pre class="code mt0">
+// 基本格式
+Filters.add('filter_name', read_callback, write_callback);
+// 添加一个只包括写的过滤器到Model上，仅该Model能使用
+this.Model.Filters.add('filter_name', Filters.noop, function(value, filterValue){
+    // 这里写你的验证逻辑
+    return "处理后的新值";
+})
+// 添加一个只包括写的过滤器到Model上
+Form.Filters.add('filter_name', Filters.noop, function(value, filterValue){
+    // 这里写你的验证逻辑
+    return "处理后的新值";
+})
+        </pre>
+        <label>@param value {string}:</label> 值<br>
+        <label>@param filterValue {anytype}:</label> z-filters中给该过滤器的值<br>
+        <strong>注：所有filter的this均指向当前viewmodel</strong>
+        <p class="mt20">错误消息接收：</p>
+        <hr>
+        <pre class="code mt0">
+this.Model.on('error', function(ev){
+    Zero.showToast(ev.msg)
+})
+        </pre>    
+        <label>@param ev.propName {string}:</label> 属性名称<br>
+        <label>@param ev.el {DOMElement}:</label> DOM节点<br>
+        <label>@param ev.msg {string}:</label> 错误消息
+        <p class="mt20">属性修改通知：</p>
+        <hr>
+        <pre class="code mt0">
+this.Model.on('change', function(data){
+    console.log(data)
+})
+        </pre>    
+        <label>@param data.propName {string}:</label> 属性名称<br>
+        <label>@param data.el {DOMElement}:</label> DOM节点<br>
+        <label>@param data.oldValue {string}:</label> 旧值<br>
+        <label>@param data.newValue {string}:</label> 新值<br>
+        <span class="red">注意：只有通过属性赋值的时候才会触发，用户页面输入不会触发</span>
+        
+        <p class="title prop mt20">controller：当前页面controller</p>
+        <p class="title mt5">on(type, callback)</p>
+        <div>
+            <small><i class="param">type{string}</i>事件类型。暂时只有 change、error。具体用法参照上面文档</small><br>
+        </div>
+        <p class="title mt5">valid(props)：触发验证表单</p>
+        <div>
+            <small><i class="param">props{string|array}</i>可选参数。需要验证的字段，不提供的情况下验证所有字段。当传递单个字段名称是验证单个字段或者传递包含多个字段名称的数组，验证多个字段</small><br>
+        </div>
+        <p class="title mt5">clone()：获取全部数据。Model本身存在许多其他属性和方法，在很多情况下不适合使用，比如ajax，调用该方法获取干净的所有字段的集合</p>
+        <p class="title mt5">cloneForm()：同clone，但是只获取表单（z-bind="value"）数据。</p>
+        <p class="title mt5">remove(propName)：从model中移除某个字段（不影响DOM本身）</p>
+        <div>
+            <small><i class="param">propName{string}</i>属性名称</small>
+        </div>
+        <p class="title mt5">add(el)：添加一个字段，如果已经存在会先remove</p>
+        <div>
+            <small><i class="param">el{DOMElemtn}</i>带z-model属性的DOM元素</small>
+        </div>
+        <p class="title mt5">isValid(props)：只校验不触发 error 事件</p>
+        <div>
+            <small><i class="param">props{string|array}</i>同valid方法参数</small><br>
+        </div>
+        
+        
+        <p class="mt30">实战示例：</p><hr>
+        <!-- z-model, z-label, z-messages, z-excludes, z-bind, z-deps, z-rules -->
+        <p class="mt10">
+            姓名： <input z-model="name" z-label="姓名" type="text"/>
+            <small>（使用z-label个性化错误提示）</small>
+        </p>
+        <p class="mt10">
+            证件类型：<select z-model="cardtype" z-excludes="-1" z-label="证件类型">
+                <option value="-1">请选择</option>
+                <option value="1">身份证</option>
+                <option value="2">军官证</option>
+            </select>
+        </p>
+        <p class="mt10">
+            证件号码： <input z-model="cardno" z-label="证件号码" type="text" z-rules="{idcard:true}" z-deps="{idcard:'this.cardtype==\'1\''}"/>
+            <small>（在证件类型=身份证的时候验证身份证格式）</small>
+        </p>
+        <p class="mt10">
+            年龄： <input z-model="age" z-label="年龄" type="text" z-rules="{int:true,max:65,min:18}"/>
+            <small>（使用 z-rules 验证年龄范围）</small>
+        </p>
+        <p class="mt10">
+            生日： <input z-model="birthday" z-label="生日" type="text" z-filters="{formatDate: 'yyyy-MM-dd'}" z-rules="{date:true}"/>
+            <small>（使用 z-filters.write 转换日期显示格式）</small>
+        </p>
+        <p class="mt10">
+            昵称：<span z-model="displayName" z-label="昵称">小马哥</span>
+            <small>(z-bind 默认将属性值绑定到innerText上）</small>
+        </p>
+        <p class="mt10">
+            金额：<span z-model="money" z-label="金额" z-filters="{fixed:2}">0.22</span>
+            <small>（使用 z-filters.write 控制显示的小数点位数）</small>
+        </p>
+        <p class="mt10">
+            邮箱：<input z-model="email" z-label="邮箱" type="text" z-rules="{email:true}"/>
+        </p>
+        <p class="mt10">
+            是否需要发票：<input z-model="needInvoice" type="checkbox" z-rules="{required:false}"/>
+        </p>
+        <p class="mt10">
+            发票抬头：<input z-model="invoiceTitle" z-label="发票抬头" z-deps="{_all_:'this.needInvoice'}" type="text"/>
+            <small>（使用 z-deps._all_ 控制只有当条件满足时才验证该字段）</small>
+        </p>
+        <p class="mt10">
+            密码：<input z-model="pwd" z-label="密码" type="text"/>
+        </p>
+        <p class="mt10">
+            确认密码：<input z-model="repwd" z-label="确认密码" z-rules="{equal:'pwd'}" type="text"/>
+        </p>
+        <p class="mt10" z-model="edu" z-label="学历" z-bind="value">
+            学历:
+            <label><input name="edu" type="radio" event-src="set_model|edu|大学"/>大学</label>
+            <label><input name="edu" type="radio" event-src="set_model|edu|大专"/>大专</label>
+            <label><input name="edu" type="radio" event-src="set_model|edu|高中"/>高中</label>
+            <small>（使用 预置的set_model函数处理器设置model的值）</small>
+        </p>
+        <p class="mt10" z-model="hobby" z-label="兴趣爱好" z-bind="value">
+            兴趣爱好:
+            <span event-src="selectHobby"><i class="checkbox" value="电子游戏"></i>电子游戏</span>
+            <span event-src="selectHobby"><i class="checkbox" value="旅游"></i>旅游</span>
+            <span event-src="selectHobby"><i class="checkbox" value="看书"></i>看书</span>
+        </p>
+        <p>
+            <img z-model="img" z-rules="{required:false}" src="/images/page/coff.jpg"/><br>
+            <a z-model="anchor" z-rules="{required:false}" href="#changelog">A标签</a>
+        </p>
+        <p class="mt10">
+            邮政编码： <input z-model="postcode" z-label="邮政编码" type="text" z-rules="{int:6}"/>
+            <small>（使用z-rules限定六位整数）</small>
+        </p>
+        <hr class="mt30">
+        <p class="mt20 tc">
+            <button event-src="output">输出所有</button>
+            <button class="ml5" event-src="modify">修改值</button>
+            <button class="ml5" event-src="clone">取值</button>
+            <button class="ml5" event-src="cloneForm">取表单值</button>
+        </p>
+        <p class="mt20 tc">
+            <button class="ml5" event-src="valid">验证</button>
+            <button class="ml5" event-src="validAll">validAll</button>
+            <button class="ml5" event-src="isValid">isValid</button>
+        </p>
+        <p class="mt20 tc">
+           <button class="ml5" event-src="isValidP">isValid 邮政编码</button>
+            <button class="ml10" event-src="valid2">只验证'姓名'和'年龄'</button>
+        </p>
+        <p class="tc mt20">本示例和PC浏览器更配哦</p>
+    </div>
+</div>
+<script>
+var zero_config = {
+    controller: '/js/page/core/viewmodel.js',
+    data: {
+    },
+    env: 'prd'
+};
+</script>
+<script data-main="/js/page/common.js?v=1" src="/build/zero.seed.js"></script>
+</body>
+</html>

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>本demo介绍</title>
+    <meta name="keywords" content="demo" />
+    <meta name="description" content="demo" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" >
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no,minimal-ui">
+    <meta name="format-detection" content="telephone=no,email=no">
+    <meta name="author" content="m.zhongan.com">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta content="yes" name="apple-touch-fullscreen">
+    <link rel="apple-touch-icon-precomposed" sizes="57x57" href="/resource/image/apple_icon/zhongan_icon_52.png" />  
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="/resource/image/apple_icon/zhongan_icon_72.png" />  
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/resource/image/apple_icon/zhongan_icon_114.png" />    
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/resource/image/apple_icon/zhongan_icon_144.png" /> 
+    <link rel="Shortcut Icon" type="image/x-icon" href="/resource/image/apple_icon/zhongan_icon_144.png" />
+    <script>(window.__setFontSize__=function(){document.documentElement.style.fontSize = Math.min( 640, Math.max(document.documentElement.clientWidth, 320) ) / 320 * 14 + 'px'})()</script>
+    <link rel="stylesheet" href="/css/main.css" />
+    <link rel="stylesheet" href="/css/page/index.css" />
+    <style>
+        label{
+            color: #4a90e2;
+        }
+        .p{
+            text-indent: 1.5em;
+        }
+        b{font-weight: bold}
+    </style>
+</head>
+<body>
+<div id="viewport">
+    <div id="header">
+        <header>
+            <span class="l"><i class="back" event-src="on_click_back"></i></span>
+<!--            <span class="l"><i class="menu" onclick="_toggleMenu_()"><em></em></i></span>-->
+            <h1>本demo介绍</h1>
+            <span class="r"></span>
+        </header>
+    </div>
+    <div id="main">
+        <h4 class="pb10">NOTE: 本demo就是基于Zero创建的项目!</h4>
+        <p>待更新</p>
+<!--
+        <p><label>Git路径：</label>$/html5/demo/framework</p>
+        <p><label>目录结构：</label></p>
+        <pre>
+framework
+|--_partials
+   |--footer.html
+   |--header.html
+   |--meta.html
+   |__seed.html
+|--_templates
+   |--comps
+   |--core
+   |--upload
+   |__index.html
+|--css
+   |--_scss
+      |--_base
+      |__index.csss
+|--images
+|--js
+   |--comps
+   |--core
+   |--upload
+   |__index.js
+|--templates
+   |--comps
+   |--core
+   |--upload
+   |__index.html
+|__gulpfile.js
+        </pre>
+        <p><label>结构说明:</label></p>
+        <p class="mt10 p"><b>_partials：</b>目前后台将一些公用的代码抽成一个control（比如head.vm, foot.vm, meta.vm ...），本demo也按照这种方式进行了拆分，以便快速对应应用到实际项目中。</p>
+        <p class="mt10 p"><b>_templates：</b>因为公用代码拆分的原因，我们实际的html页面都需要组合_partials中的那些代码块，这些html不能直接访问，需要gulp进行处理。gulpfilejs中已经添加了对应的watch任务来监视文件夹里面的文件改动，动态组合</p>
+        <p class="mt10 p"><b>js：</b>页面js（既页面controller存放地）</p>
+        <p class="mt10 p"><b>templates：</b>与_templates文件夹下的文件相对应, 是组合后的对应文件，能直接访问</p>
+        <p class="mt10"><label>其他:</label></p>
+        <p>其中文件组合使用到了 gulp-file-include 插件，有兴趣的可以研究下。gulpfile.js对应也添加了相应的watch（watch:template）来监视文件改动, 执行 gulp 或者 gulp watch:template 命令即可</p>
+    </div>
+-->
+    </div>
+</div>
+<script>
+var zero_config = {
+    controller: 'default',
+    data: {
+        
+    },
+    env: 'prd'
+};
+</script>
+<script data-main="js/page/common.js" src="/build/zero.seed.js" type="text/javascript"></script>
+</body>
+</html>

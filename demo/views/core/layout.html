@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>本demo介绍</title>
+    <meta name="keywords" content="demo" />
+    <meta name="description" content="demo" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" >
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no,minimal-ui">
+    <meta name="format-detection" content="telephone=no,email=no">
+    <meta name="author" content="m.zhongan.com">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta content="yes" name="apple-touch-fullscreen">
+    <link rel="apple-touch-icon-precomposed" sizes="57x57" href="/resource/image/apple_icon/zhongan_icon_52.png" />  
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="/resource/image/apple_icon/zhongan_icon_72.png" />  
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/resource/image/apple_icon/zhongan_icon_114.png" />    
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/resource/image/apple_icon/zhongan_icon_144.png" /> 
+    <link rel="Shortcut Icon" type="image/x-icon" href="/resource/image/apple_icon/zhongan_icon_144.png" />
+    <script>(window.__setFontSize__=function(){document.documentElement.style.fontSize = Math.min( 640, Math.max(document.documentElement.clientWidth, 320) ) / 320 * 14 + 'px'})()</script>
+    <link rel="stylesheet" href="/css/main.css" />
+    <link rel="stylesheet" href="/css/page/index.css" />
+</head>
+<body>
+<div id="viewport">
+    <div id="header">
+        <header>
+            <span class="l"><i class="back" event-src="on_click_back"></i></span>
+<!--            <span class="l"><i class="menu" onclick="_toggleMenu_()"><em></em></i></span>-->
+            <h1>页面布局方式</h1>
+            <span class="r"></span>
+        </header>
+    </div>
+    <div id="main">
+        <h3>宽度以rem为主，其他以px为主！</h3>
+        <p class="mt10">
+            目前为了配合rem单位布局，html节点的font-size会随着屏幕宽度的增大而增大，但是body的字体大小是固定的14px，是为了让字体大小在各种屏幕下都是相同大小（后面会看情况使用媒体查询让字体在大屏幕下显示大一些）！</p>
+        <p class="mt10">
+            "其他以px为主": 主要是说高度和字体大小。事实上在字体大小固定的情况下，高度必然要自适应，不然在宽屏下底部会有很大的空白！
+        </p>
+        <p class="mt10 underline">
+            任何布局方式都有其弊端，下面列出“宽度以rem为主，其他以px为主！”布局原则下的一些主要坑点及解决方案。
+        </p>
+        <p class="mt10">
+            <label>坑点1：</label>背景图片上的文字与背景图片问题。如下图所示： 文字在竖向上没有与背景图片等比缩放
+            <img src="/images/page/keng-1.jpg"/><br>
+            <b>解决方案：</b><br>
+            1. 这个背景图片使用px单位固定大小<br>
+            2. 文字添加以rem为单位的line-height
+        </p>
+        <p class="mt10">
+            <label>坑点2：</label>当页面上既包含等比缩放的图片又包含fixed元素的情况下, 随着屏幕宽度的增大，这个fixed元素的相对位置会错开很多。
+            <img src=""/><br>
+            <b>解决方案：</b><br>
+            1. 不使用fixed定位，使用absolute相对于其相对的元素定位。比如把该元素放到其相对的元素内部然后使用left top属性将其抽出来
+        </p>
+    </div>
+</div>
+<script>
+var zero_config = {
+    controller: 'default',
+    data: {
+        
+    },
+    env: 'prd'
+};
+</script>
+<script data-main="/js/page/common.js" src="/build/zero.seed.js" type="text/javascript"></script>
+</body>
+</html>

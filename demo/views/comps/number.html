@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>基础组件</title>
+    <meta name="keywords" content="demo" />
+    <meta name="description" content="demo" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" >
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no,minimal-ui">
+    <meta name="format-detection" content="telephone=no,email=no">
+    <meta name="author" content="m.zhongan.com">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta content="yes" name="apple-touch-fullscreen">
+    <link rel="apple-touch-icon-precomposed" sizes="57x57" href="/resource/image/apple_icon/zhongan_icon_52.png" />  
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="/resource/image/apple_icon/zhongan_icon_72.png" />  
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/resource/image/apple_icon/zhongan_icon_114.png" />    
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/resource/image/apple_icon/zhongan_icon_144.png" /> 
+    <link rel="Shortcut Icon" type="image/x-icon" href="/resource/image/apple_icon/zhongan_icon_144.png" />
+    <script>(window.__setFontSize__=function(){document.documentElement.style.fontSize = Math.min( 640, Math.max(document.documentElement.clientWidth, 320) ) / 320 * 14 + 'px'})()</script>
+    <link rel="stylesheet" href="/css/main.css" />
+    <link rel="stylesheet" href="/css/page/index.css" />
+</head>
+<body>
+<div id="viewport">
+    <div id="header">
+        <header>
+            <span class="l"><i class="back" event-src="on_click_back"></i></span>
+            <h1>数字组件</h1>
+            <span class="r"></span>
+        </header>
+    </div>
+    <div id="main">
+        <p class="sub-title mb10"><label>数字组件 ui/ui.number</label></p>
+        <p class="title">val(value)</p>
+        <small>取值或者设值(无传参时)</small>
+        <p class="title mt10">set(attr, value)</p>
+        <small>重设min 或者 max值</small>
+        <br>
+        <p class="mt20">示例：</p>
+        <div id="buyCount" class="ui-number">
+            <span class="minus disabled">-</span><input type="tel" value="1" readonly /><span class="plus disabled">+</span>
+        </div>
+        <p>看console</p>
+        <pre class="code">
+@param canEdit{bool}: 是否允许用户编辑
+@param el{element}: dom 对象， 为避免用户感知到元素从无到有， dom结构需提前存在
+@param min{int}: 允许的最小值
+@param min{max}: 允许的最大值
+@param onchange{function}: 新值生效之前触发，返回false可取消新值
+@param change{function}: 新值生效之后触发
+
+this.quantity = new UINumber({
+    canEdit: true,
+    el: this.$('#buyCount'),
+    min: 1,
+    max: 1,
+    onchange: function( data ){
+
+    },
+    change: function( data ){
+
+        console.log(data);
+    }
+})
+        </pre>
+    </div>
+</div>
+<script>
+var zero_config = {
+    controller: '/js/page/comps/number.js',
+    data: {
+    },
+    env: 'prd'
+};
+</script>
+<script data-main="/js/page/common.js?v=1" src="/build/zero.seed.js"></script>
+</body>
+</html>

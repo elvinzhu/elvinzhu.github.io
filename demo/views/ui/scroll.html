@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>基础组件</title>
+    <meta name="keywords" content="demo" />
+    <meta name="description" content="demo" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" >
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no,minimal-ui">
+    <meta name="format-detection" content="telephone=no,email=no">
+    <meta name="author" content="m.zhongan.com">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta content="yes" name="apple-touch-fullscreen">
+    <script>(window.__setFontSize__=function(){document.documentElement.style.fontSize = Math.min( 640, Math.max(document.documentElement.clientWidth, 320) ) / 320 * 14 + 'px'})()</script>
+    <link rel="stylesheet" href="/css/main.css" />
+    <link rel="stylesheet" href="/css/page/index.css" />
+</head>
+<body>
+<div id="viewport" class="pg-ui-scroll">
+   <div id="header">
+        <header>
+            <span class="l"><i class="back" event-src="on_click_back"></i></span>
+            <h1>弹性滚动组件</h1>
+            <span class="r"></span>
+        </header>
+    </div>
+    <p class="sub-title mb10"><label>弹性滚动组件 ui/ui.scroll</label></p>
+    <p class="title constructor">new Scroll(el, options)</p>
+    <small>(参考本页面控制器代码)</small> 
+    <p class="title mt10">scrollTo(dest)</p>
+    <small>滚动到指定位置</small> 
+    <p class="title mt10">useTransition(timingfunc, duration)</p>
+    <small>应用transition动画(参数可省略)</small>
+    <p class="title mt10">removeTransition()</p>
+    <small>移除应用的transition</small>
+    <p class="title mt10">animateTo(dest, timingfunc, duration)</p>
+    <small>平滑滚动到制定位置(2,3参数可省略)</small>
+    <p class="title mt10">getTrans()</p>
+    <small>获取translateX/Y</small>
+    <p class="title mt10">resetPosition(noAni)</p>
+    <small>重置无效位置，滚动到有效位置<br>
+        <i class="param">noAni{bool}</i>是否不要动画
+    </small>
+    <p class="mt20">示例1: 水平滚动</p>
+    <div class="wraper">
+        <ul>
+           <li>
+            <script>
+            for(var i=0;i<100;i++){
+                document.write(i);
+            }
+            </script>  
+           </li>
+        </ul>
+    </div>
+    <button class="mt5" event-src="animateTo|-100|linear">animateTo(-100, 'linear')</button>
+    <button class="mt5" event-src="animateTo|0|linear">animateTo(0, 'linear')</button>
+    <p class="mt10">示例2: 垂直滚动</p>
+    <div class="wraper2">
+        <ul>
+            <script>
+            for(var i=0;i<200;i++){
+                document.write('<li>' + i + '</li>');
+            }
+            </script>
+        </ul>
+    </div>
+</div>
+<script>
+var zero_config = {
+    controller: '/js/page/ui/scroll.js',
+    data: {
+    },
+    env: 'prd'
+};
+</script>
+<script data-main="/js/page/common.js?v=1" src="/build/zero.seed.js"></script>
+</body>
+</html>

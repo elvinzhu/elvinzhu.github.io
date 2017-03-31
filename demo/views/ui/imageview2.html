@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>基础组件</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no,minimal-ui">
+    <meta name="format-detection" content="telephone=no,email=no">
+    <script>(window.__setFontSize__=function(){document.documentElement.style.fontSize = Math.min( 750, Math.max(document.documentElement.clientWidth, 320) ) / 320 * 14 + 'px'})()</script>
+    <link rel="stylesheet" href="/css/main.css" />
+    <link rel="stylesheet" href="/css/page/index.css" />
+</head>
+<body>
+<div id="viewport"  class="pg-imageview">
+    <div id="header">
+        <header>
+            <span class="l"><i class="back" event-src="on_click_back"></i></span>
+            <h1>图片预览</h1>
+            <span class="r"></span>
+        </header>
+    </div>
+    <div id="main">
+        <p class="sub-title mb10"><label>图片预览组件 ui/ui.imageview2</label></p>
+        <p class="title constructor">new ImageView(data, options)</p>
+        <small><i class="param">data{array}</i>图片相关数据（格式参照控制器代码）</small> <br>
+        <small><i class="param">options.header{bool|int}</i>页面是否有头部|头部高度</small>
+        <small><i class="param">options.current{int}</i>默认显示第几张</small>
+        <p class="title mt10">show(data, options)</p>
+        <small>参数同构造函数</small>
+        <p class="mt20" event-src="showImgs">
+            点我看女神
+        </p>
+    </div>
+</div>
+<script>
+var zero_config = {
+    controller: '/js/page/ui/imageview2.js',
+    data: {},
+    env: 'prd'
+};
+</script>
+<script  data-main="/js/page/common.js?v=1" src="/build/zero.seed.js"></script>
+</body>
+</html>

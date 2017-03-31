@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>基础组件</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" >
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no,minimal-ui">
+    <meta name="format-detection" content="telephone=no,email=no">
+    <script>(window.__setFontSize__=function(){document.documentElement.style.fontSize = Math.min( 750, Math.max(document.documentElement.clientWidth, 320) ) / 320 * 14 + 'px'})()</script>
+    <link rel="stylesheet" href="/css/main.css" />
+    <link rel="stylesheet" href="/css/page/index.css" />
+</head>
+<body>
+<div id="viewport">
+   <div id="header">
+        <header>
+            <span class="l"><i class="back" event-src="click_back"></i></span>
+            <h1>数据选择器</h1>
+            <span class="r"></span>
+        </header>
+    </div>
+    <div id="main">
+        <p class="sub-title mb10"><label>数据选择器 ui/ui.datapicker</label></p>
+        
+        <p class="title constructor">new DataPicker(options)</p>
+        <div>
+            <small><i class="param">options.title{string}</i>弹窗标题。默认“请选择”</small><br>
+            <small><i class="param">options.data{object|array}</i>显示数据</small>。支持的格式如下:<br>
+            <pre class="code">
+// 1. 数组
+[1,2,3,4];
+// 2. 对象数组
+[{
+    key:'', name:''
+}];
+ // 3. 纯对象
+{
+    key1: 'value1',
+    key2: 'value2',
+}</pre>
+            
+        </div>
+        <p class="title">on(type, callback)</p>
+        <div class="mb20">
+            <small><i class="param">type{string}</i>事件类型。暂时只有 change, 在用户选择某项之后触发。会给回调传递{key: "4", name: "军人证"}形式的用户选择的数据</small><br>
+        </div>
+        <strong>
+            注： BaseController中提供了一个pick_item（<a href="/views/core/controller.html#pick_item">传送门</a>）事件处理器来简化datapicker的使用
+        </strong>
+        <p class="mt20">实例1：</p>
+        <hr>
+        <p class="mt10">
+        证件类型1: <input id="cardtype" readonly="readonly " type="text" event-src="showPicker"/><br/>
+        </p>
+        <p class="mt10">
+        证件类型2: <input readonly="readonly " type="text" event-src="pick_item|card_type_data"/>
+        </p>
+        <p class="mt10" event-src="pick_item|card_type_data|>span">
+        证件类型3: <span type="text">点击选择</span>>
+        </p>
+    </div>
+</div>
+<script>
+var zero_config = {
+    controller: '/js/page/ui/datapicker.js',
+    data: {
+    },
+    env: 'prd'
+};
+</script>
+<script data-main="/js/page/common.js?v=1" src="/build/zero.seed.js"></script>
+</body>
+</html>

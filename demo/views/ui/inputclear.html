@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>基础组件</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" >
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no,minimal-ui">
+    <meta name="format-detection" content="telephone=no,email=no">
+    <script>(window.__setFontSize__=function(){document.documentElement.style.fontSize = Math.min( 750, Math.max(document.documentElement.clientWidth, 320) ) / 320 * 14 + 'px'})()</script>
+    <link rel="stylesheet" href="/css/main.css" />
+    <link rel="stylesheet" href="/css/page/index.css" />
+</head>
+<body>
+<div id="viewport" class="pg-ui-inputclear">
+   <div id="header">
+        <header>
+            <span class="l"><i class="back" event-src="on_click_back"></i></span>
+            <h1>输入清除组件</h1>
+            <span class="r"></span>
+        </header>
+    </div>
+    <div id="main">
+        <p class="sub-title mb10"><label>输入清除组件 ui/ui.inputclear</label></p>
+        <p class="title constructor">new InputClear(els, options)</p>
+        <small><i class="param">els {HtmlElement}</i>需要添加inputclear功能的输入框</small>
+        <small><i class="param">options.padding {bool|int}</i>当使用inputclear的时候，默认会给input添加一个30px的padding-right; <br>
+        true或者不提供该参数： 走默认 <br>
+        false: 不添加padding<br>
+        int: 以提供的值作为padding-right
+        </small>
+        <p class="mt20">
+            实例1：
+        </p>
+        <input type="text" style="width:150px;"/>
+        <input type="text" class="ml20 mt20"/>
+        <input type="text" class="mt20"/>
+    </div>
+</div>
+<script>
+var zero_config = {
+    controller: '/js/page/ui/inputclear.js',
+    data: {
+    },
+    env: 'prd'
+};
+</script>
+<script data-main="/js/page/common.js?v=1" src="/build/zero.seed.js"></script>
+</body>
+</html>

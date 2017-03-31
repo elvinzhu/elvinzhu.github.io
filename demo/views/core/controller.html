@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Controller</title>
+    <meta name="keywords" content="demo" />
+    <meta name="description" content="demo" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" >
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no,minimal-ui">
+    <meta name="format-detection" content="telephone=no,email=no">
+    <meta name="author" content="m.zhongan.com">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta content="yes" name="apple-touch-fullscreen">
+    <link rel="apple-touch-icon-precomposed" sizes="57x57" href="/resource/image/apple_icon/zhongan_icon_52.png" />  
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="/resource/image/apple_icon/zhongan_icon_72.png" />  
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/resource/image/apple_icon/zhongan_icon_114.png" />    
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/resource/image/apple_icon/zhongan_icon_144.png" /> 
+    <link rel="Shortcut Icon" type="image/x-icon" href="/resource/image/apple_icon/zhongan_icon_144.png" />
+    <script>(window.__setFontSize__=function(){document.documentElement.style.fontSize = Math.min( 640, Math.max(document.documentElement.clientWidth, 320) ) / 320 * 14 + 'px'})()</script>
+    <link rel="stylesheet" href="/css/main.css" />
+    <link rel="stylesheet" href="/css/page/index.css" />
+</head>
+<body>
+<div id="viewport">
+    <div id="header">
+        <header>
+            <span class="l"><i class="back" event-src="on_click_back"></i></span>
+<!--            <span class="l"><i class="menu" onclick="_toggleMenu_()"><em></em></i></span>-->
+            <h1>Controller</h1>
+            <span class="r"></span>
+        </header>
+    </div>
+    <div id="main"> 
+        <p name="BaseController" class="sub-title"><label>BaseController</label></p>
+        <strong>注：<br>
+        1. 所有事件处理函数均可当正常函数手动调用，e参数传递null其他按需传递即可。<br>
+        2. 所有函数及事件处理均可以被override。<br>
+        3. event-src、event-url均可运行时动态修改。<br>
+        </strong>
+        
+        
+        
+<!-- ========== #### this.$el ### ==================== -->
+        <p class="title prop mt5">this.$el { zepot object }：
+        zepto对象，指向页面的#viewport节点。查找页面元素请使用this.$el.find或者稍后介绍的this.$方法</p>
+        
+        
+        
+<!-- ========== #### this.viewdata ### ==================== -->
+        <p class="title prop mt5">this.viewdata { object }：
+        js 对象，可用于存储一些页面的临时数据</p>
+        
+        
+        
+<!-- ========== #### this.events ### ==================== -->
+        <p class="title prop mt5">this.events{ object }：
+        事件绑定（建议使用在非click事件, click事件请使用event-src
+        <input id="textTest1" type="text" placeholder="events test" class="ml10" style="width:80px" /></p>
+<pre class="code">
+var controller = BaseController.extend({
+    run: function(data){
+        this.init();
+    },
+    events: {
+        // "event-type|selector": 'function name of this controller'
+        'blur|#textTest1': 'onblur'
+    }
+})
+...
+pt.onblur = function(e){
+    Zero.showToast('blur')
+}
+</pre>
+
+
+
+<!-- ========== #### this.run() ### ==================== -->
+        <p class="title mt5">this.run(data)：
+        页面入口函数, 相当于c++的main函数，子controller需要重写</p>
+      
+          
+        
+<!-- ========== #### this.$() ### ==================== -->
+        <p class="title mt5">this.$(selector)：
+        等价于this.$el.find。页面元素查找推荐方法</p>
+<pre class="code">
+例：
+var $mobile = this.$('#mobile')
+</pre>
+
+
+
+<!-- ========== #### this.getQuery() ### ==================== -->    
+        <p class="title mt5">this.getQuery(key)：
+        获取search部分的指定参数</p>
+<pre class="code">
+@param id{string required}: 参数名称
+例：
+// index.html?id=3&page=4
+var id = this.getQuery('id')// == "3"
+</pre>
+
+
+
+<!-- ========== #### this.getQueryParams() ### ==================== -->    
+        <p class="title mt5">this.getQueryParams()：
+        获取search部分的所有参数，返回一个对象</p>
+        
+        
+        
+<!-- ========== #### this.T() ### ==================== --> 
+        <p id="T" class="title mt5">this.T(selector,data)：underscore模板引擎快捷使用方式。特点：会缓存编译过的模板，再次使用的时候不会重新编译，提升了性能<br>
+            <a href="http://underscorejs.org/#template" target="_blank">underscore文档</a>
+            <a href="/views/core/template.html" class="ml30">例子</a>
+        </p>
+        
+        
+        
+ <!-- ========== #### this.P(key) ### ==================== --> 
+        <p class="title mt5">this.P(key)：
+        获取hash部分的指定参数</p>       
+<pre class="code">
+例： url = 'index.html?id=3#hash?name=elvin'
+this.P('name') // = elvin
+</pre>        
+
+
+
+<!-- ========== #### this.getHash() ### ==================== --> 
+        <p class="title mt5">this.getHash()：
+        获取hash部分, 不包括hash后面的参数</p>       
+<pre class="code">
+例： url = 'index.html?id=3#hash?name=elvin'
+this.getHash() // = hash
+</pre>
+        
+        
+        
+<!-- ========== #### [event-src] ### ==================== --> 
+        <p class="title mt5 ev">[event-src]: 框架推荐的click事件绑定方式（可通过“|”来传递参数）
+            <button event-src="clickMe1">无参</button>
+            <button event-src="clickMe2|12">传参</button>
+            <button event-src="clickMe3|12|zero is good!">多参</button>
+        </p>
+        <small>这个特性本身是使用zepto的事件代理做的，所以嵌套的时候并不会都执行，可查看页尾的嵌套测试。</small>
+<pre class="code">
+例1：&lt;button event-src="clickMe1"&gt;无参&lt;/button&gt;
+例2：&lt;button event-src="clickMe2|12"&gt;传参&lt;/button&gt;
+例3：&lt;button event-src="clickMe3|12|zero is good!"&gt;多参&lt;/button&gt;
+
+例3代码:
+pt.clickMe3 = function( e, id, p ){
+<p class="bold">
+    // e.currentTarget: 当前带event-src属性的元素
+    // e.target: 实际点击元素
+</p>
+    Zero.showToast('参数：'+id + '&lt;br&gt;'+p)
+}
+</pre>
+
+
+
+<!-- ========== #### [event-url] ### ==================== -->
+        <p class="title mt5 ev">[event-url]: 框架推荐的页面跳转事件绑定方式
+            <button event-url="../index.html?d=1">跳转</button>
+            <button event-url="../index.html?d=1|1">无history跳转</button>
+        </p>
+<pre class="code">
+// 适用于要使用js进行页面跳转的场景
+例1：&lt;button event-url="../index.html?d=1"&gt;跳转&lt;/button&gt;
+例2：&lt;button event-url="../index.html?d=1|1"&gt;无history跳转&lt;/button&gt;
+</pre>
+
+
+
+<!-- ========== #### this.submitForm ### ==================== -->
+        <p class="title mt5 evhandle">submitForm(e,selector): Zero预置表单提交事件处理函数</p>
+<pre class="code">
+&lt;button event-src="submitForm|selector"&gt;确定&lt;/button&gt;
+// 第一个参数是表单选择器, 
+// 如果不提供则提交该按钮所在的表单
+</pre>
+
+
+
+<!-- ========== #### this.goBack ### ==================== -->
+        <p class="title mt5 evhandle">goBack(e,step): Zero预置回退事件处理函数</p>
+<pre class="code">
+回退一步：&lt;button event-src="goBack"&gt;回退一步&lt;/button&gt;
+回退两步：&lt;button event-src="goBack|-2"&gt;回退两步&lt;/button&gt;
+前进一步：&lt;button event-src="goBack|2"&gt;前进两步&lt;/button&gt;
+</pre>
+
+
+
+<!-- ========== #### this.click_hide ### ==================== -->
+        <p class="title mt5 evhandle">click_hide(e,selector): 点击隐藏DOM元素事件处理函数。当selector为空的话，默认隐藏自己，可通过在选择器前面加 “>”符号来指定子元素
+            <button event-src="click_hide|#detail">隐藏详情</button>
+            <button event-src="click_hide">隐藏自己</button>
+            <button id="detail">我是详情</button>
+        </p>
+<pre class="code">
+点击隐藏#detail元素：&lt;button event-src="click_hide|#detail"&gt;隐藏详情&lt;/button&gt;
+点击隐藏自己：&lt;button event-src="click_hide"&gt;隐藏自己&lt;/button&gt;
+点击隐藏子元素：&lt;button event-src="click_hide|>span"&gt;隐藏子span&lt;/button&gt;
+</pre>
+
+
+
+<!-- ========== #### this.click_show ### ==================== -->
+        <p class="title mt5 evhandle">click_show(e,selector): 点击显示DOM元素事件处理函数。可通过在选择器前面加 “>”符号来指定子元素
+            <button event-src="click_show|#detail2">显示详情</button>
+            <button id="detail2" class="hide">我是详情</button>
+        </p>
+<pre class="code">
+点击显示#detail2元素：&lt;button event-src="click_show|#detail2"&gt;显示详情&lt;/button&gt;
+点击显示子元素：&lt;button event-src="click_show|>b"&gt;显示子b元素&lt;/button&gt;
+</pre>
+
+
+
+<!-- ========== #### this.toggle_class ### ==================== -->
+        <p class="title mt5 evhandle">toggle_class(e,cls,selector): toggle class。可通过在选择器前面加 “>”符号来指定子元素
+            <button event-src="toggle_class|hide|#detail3">Toggle详情</button>
+            <button id="detail3" class="hide">我是详情</button>
+        </p>
+<pre class="code">
+点击显示#detail3元素：&lt;button event-src="toggle_class|hide|#detail3"&gt;显示详情&lt;/button&gt;
+点击toggle子元素class：&lt;button event-src="toggle_class|hide|>b"&gt;toggle子b元素的class&lt;/button&gt;
+</pre>
+
+
+<!-- ========== #### this.set_model ### ==================== -->
+        <p id="set_model" class="title mt5 evhandle">set_model(e,propName,val): 设置model某个属性值。</p>
+<pre class="code">
+&lt;input name="edu" type="radio" event-src="set_model|edu|大学"/&gt;大学
+</pre>
+
+
+<!-- ========== #### this.pick_item ### ==================== -->
+        <p id="pick_item" class="title mt5 evhandle">pick_item(e, dataKey, selector): 选择数据。</p>
+        <small><i class="param">dataKey{string}</i>定义在当前controller上的数据字段名称</small><br>
+        <small><i class="param">selector{string}</i>可选参数。元素选择器，指定接收用户选择的数据的元素, 可通过在选择器前面加 “>”符号来指定子元素</small><br>
+        <a href="/views/ui/datapicker.html"> 例子</a>
+        
+        
+        
+        <div event-src="test" class="mt20" style="padding:20px;border:solid 1px gray;">
+            <p>event-src 嵌套测试</p>
+            <p event-src="test1"> This is child element. </p>
+        </div>
+    </div>
+</div>
+<script>
+var zero_config = {
+    controller: '/js/page/core/controller.js',
+    data: {
+        
+    },
+    env: 'prd'
+};
+</script>
+<script data-main="/js/page/common.js" src="/build/zero.seed.js" type="text/javascript"></script> 
+</body>
+</html>

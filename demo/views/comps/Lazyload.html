@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Lazyload组件</title>
+    <meta name="keywords" content="demo" />
+    <meta name="description" content="demo" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" >
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no,minimal-ui">
+    <meta name="format-detection" content="telephone=no,email=no">
+    <meta name="author" content="m.zhongan.com">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta content="yes" name="apple-touch-fullscreen">
+    <script>(window.__setFontSize__=function(){document.documentElement.style.fontSize = Math.min( 640, Math.max(document.documentElement.clientWidth, 320) ) / 320 * 14 + 'px'})()</script>
+    <link rel="stylesheet" href="/css/main.css" />
+    <link rel="stylesheet" href="/css/page/index.css" />
+    <style>
+    img{
+        width:100%;
+    }
+    .lazy {
+        min-height:100px;
+        min-width:100px;
+        background-size:100% auto;
+        background-position:center center;
+    }
+    .ui-tabs-content {
+        overflow: hidden;
+    }
+    </style>
+</head>
+<body>
+<div id="viewport">
+    <div id="header">
+        <header>
+            <span class="l"><i class="back" event-src="on_click_back"></i></span>
+            <h1>Lazyload</h1>
+            <span class="r"></span>
+        </header>
+    </div>
+    <div id="main">
+        <p class="title com mt40">
+            Lazyload组件
+        </p>
+        <pre class="code mb0">
+var lazyload = new Lazyload({
+    element:".lazy"
+});
+        </pre>
+        <div id="tabs1" class="ui-tabs">
+            <div class="ui-tabs-title-room">
+                <ul class="ui-tabs-title">
+                    <li><a href="javascript:">DIV背景</a></li>
+                    <li><a href="javascript:">IMG标签</a></li>
+                </ul>
+            </div>
+            <div class="ui-tabs-content-main">
+                <div class="ui-tabs-content">
+                    <div id="tabsH-content1">
+                        <div>
+                            <div class="lazy" data-src="/images/page/arch.png"></div>
+                            <div class="lazy" data-src="/images/page/config.jpg"></div>
+                            <div class="lazy" data-src="/images/page/keng-1.jpg"></div>
+                            <div class="lazy" data-src="/images/page/arch.png"></div>
+                            <div class="lazy" data-src="/images/page/config.jpg"></div>
+                            <div class="lazy" data-src="/images/page/keng-1.jpg"></div>
+                            <div class="lazy" data-src="/images/page/arch.png"></div>
+                            <div class="lazy" data-src="/images/page/config.jpg"></div>
+                            <div class="lazy" data-src="/images/page/keng-1.jpg"></div>
+                        </div>
+                    </div>
+                    <div id="tabsH-content2">
+                        <div>
+                            <img class="lazy" data-src="/images/page/arch.png" />
+                            <img class="lazy" data-src="/images/page/config.jpg" />
+                            <img class="lazy" data-src="/images/page/keng-1.jpg" />
+                            <img class="lazy" data-src="/images/page/arch.png" />
+                            <img class="lazy" data-src="/images/page/config.jpg" />
+                            <img class="lazy" data-src="/images/page/keng-1.jpg" />
+                            <img class="lazy" data-src="/images/page/arch.png" />
+                            <img class="lazy" data-src="/images/page/config.jpg" />
+                            <img class="lazy" data-src="/images/page/keng-1.jpg" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+var zero_config = {
+    controller: '/js/page/comps/lazyload.js',
+    data: {
+    },
+    env: 'prd'
+};
+</script>
+<script data-main="/js/page/common.js?v=1" src="/build/zero.seed.js"></script>
+</body>
+</html>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>分享组件【兼容App】</title>
+    <meta name="keywords" content="demo" />
+    <meta name="description" content="demo" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" >
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no,minimal-ui">
+    <meta name="format-detection" content="telephone=no,email=no">
+    <meta name="author" content="m.zhongan.com">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta content="yes" name="apple-touch-fullscreen">
+    <link rel="apple-touch-icon-precomposed" sizes="57x57" href="/resource/image/apple_icon/zhongan_icon_52.png" />  
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="/resource/image/apple_icon/zhongan_icon_72.png" />  
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/resource/image/apple_icon/zhongan_icon_114.png" />    
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/resource/image/apple_icon/zhongan_icon_144.png" /> 
+    <link rel="Shortcut Icon" type="image/x-icon" href="/resource/image/apple_icon/zhongan_icon_144.png" />
+    <script>(window.__setFontSize__=function(){document.documentElement.style.fontSize = Math.min( 640, Math.max(document.documentElement.clientWidth, 320) ) / 320 * 14 + 'px'})()</script>
+    <link rel="stylesheet" href="/css/main.css" />
+    <link rel="stylesheet" href="/css/page/index.css" />
+</head>
+<body>
+<div id="viewport">
+    <div id="header">
+        <header>
+            <span class="l"><i class="back" event-src="on_click_back"></i></span>
+            <h1>Share</h1>
+            <span class="r"></span>
+        </header>
+    </div>
+    <div id="main">
+        <p class="sub-title mb10"><label>分享组件(兼容app) tool/share</label></p>
+        <b>注：</b>
+        <p>
+            1. 该组件默认使用众安官微的appid做微信签名配置， 如需更换请赋值 window._za_share_sign_url_ 进行覆盖
+        </p>
+        <p>
+            2. 如需开启微信debug模式，请赋值 window._za_share_debug_ == true
+        </p>
+        <p class="title mt10">Share.set(config, app_config)</p>
+        <small><i class="param">config {object}</i>支持所有wx分享的参数</small><br>
+        <small><i class="param">config.richTitle {string}</i>如果传递，将用于朋友圈分享话术（微信有效）</small><br>
+        <small><i class="param">config {object}</i>app分享额外配控制</small><br>
+        <small><i class="param">app_config.mode {string}</i>"pop"：立即弹出分享框, "set"： 只塞数据(默认)</small><br>
+        <small><i class="param">app_config.type {string}</i>app分享途径，具体值见wiki或者问app人员</small><br>
+        <small><i class="param">app_config.disabled {bool}</i>是否禁用app分享</small>
+        <p class="title prop mt10">wx</p>
+        <small>微信JSSDK对象，即只要引用该js，微信SDK的所有API都可以直接使用</small>
+        <p class="mt20">
+            实例1： 请参考本页面controller
+        </p>
+    </div>
+</div>
+<script>
+var zero_config = {
+    controller: '/js/page/tool/share.js',
+    data: {
+    },
+    env: 'prd'
+};
+</script>
+<script data-main="/js/page/common.js?v=1" src="/build/zero.seed.js"></script>
+</body>
+</html>

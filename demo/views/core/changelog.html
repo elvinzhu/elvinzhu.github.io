@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>基础组件</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" >
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no,minimal-ui">
+    <meta name="format-detection" content="telephone=no,email=no">
+    <script>(window.__setFontSize__=function(){document.documentElement.style.fontSize = Math.min( 750, Math.max(document.documentElement.clientWidth, 320) ) / 320 * 14 + 'px'})()</script>
+    <link rel="stylesheet" href="/css/main.css" />
+    <link rel="stylesheet" href="/css/page/index.css" />
+</head>
+<body>
+<div id="viewport" class="pg-changelog">
+    <div id="header">
+        <header>
+            <span class="l"><i class="back" event-src="on_click_back"></i></span>
+            <h1>更新日志</h1>
+            <span class="r"></span>
+        </header>
+    </div>
+    <div id="main">
+        <p>
+            <label>【2016-11-03】</label> tool/form  ViewModel 增加 isValid 方法
+        </p>
+        <p>
+            <label>【2016-09-29】</label> tool/form  filter 增加 trybind 尝试读取另一个属作为值，只有读部分
+        </p>
+        <p>
+            <label>【2016-09-20】</label> tool/form  增加 getEl 方法，用于获取字段对应的DOM元素
+        </p>
+        <p>
+            <label>【2016-09-02】</label> tool/form  的 int 规则增加对位数的支持
+        </p>
+        <p>
+            <label>【2016-08-31】</label> tool/form  增加 validAll 方法, 单次验证所有字段，适合PC端使用。原valid 方法增加 第二个参数 validAll，标识是否单次验证全部字段，在传递第一个参数时使用。
+        </p>
+        <p>
+            <label>【2016-08-31】</label> tool/form  增加 data 方法, 用于批量向页面塞值
+        </p>
+        <p>
+            <label>【2016-08-25】</label> tool/form  增加 cloneForm 方法
+        </p>
+        <p>
+            <label>【2016-08-25】</label> 修改了Form： z-bind，required 默认值调整（具体调整文档有体现）
+        </p>
+        <p>
+            <label>【2016-08-17】</label> Util增加 setCookie 方法
+        </p>
+        <p>
+            <label>【2016-08-12】</label> BaseController增加pick_item事件处理器，简化ui.datapicker的使用
+            <a href="/views/core/controller.html#pick_item"> 传送门</a>
+            <a href="/views/ui/datapicker.html"> 例子</a>
+        </p>
+        <p>
+            <label>【2016-08-12】</label> 增加 too/ui.datapicker 组件
+            <a href="/views/ui/datapicker.html"> 传送门</a>
+        </p>
+        <p>
+            <label>【2016-08-12】</label> BaseController中的click_show等事件处理器selector参数支持通过">#id"方式指定子元素
+        </p>
+        <p>
+            <label>【2016-08-05】</label> BaseController增加set_model配合viewmodel模块
+            <a href="/views/core/controller.html#set_model"> 传送门</a>
+        </p>
+        <p>
+            <label>【2016-08-04】</label> 增加tool/form 模块（包括表单验证）
+            <a href="/views/core/viewmodel.html"> 传送门</a>
+        </p>
+        <p>
+            <label>【2016-07-28】</label> ui.loadmore 支持滚动加载更多
+        </p>
+        <p>
+            <label>【2016-07-26】</label> underscore 增加 formatDate 扩展
+        </p>
+        <p>
+            <label>【2016-07-25】</label> Util 增加 monthDiff, removeTime, addMonth, addDate, addYear 方法
+        </p>
+        <p>
+            <label>【2016-07-15】</label> 增加 ui.datepicker 组件
+        </p>
+        <p>
+            <label>【2016-07-13】</label> Util 增加paserParam 方法，controller 增加 getHash， P 方法
+        </p>
+        <p>
+            <label>【2016-07-08】</label> calendar 默认置顶当前月
+        </p>
+        <p>
+            <label>【2016-07-07】</label> add "hideloading" param to zero_config
+        </p>
+        <p>
+            <label>【2016-07-06】</label> add "merge" function to Zero.Util
+        </p>
+        <p>
+            <label>【2016-06-29】</label> data-mian 修改成同步加载，即先加载data-main，后加载controller
+        </p>
+        <p>
+            <label>【2016-06-27】</label> 增加<a href="../ui/alphapicker.html">ui-alphapicker</a>组件
+        </p>
+        <p>
+            <label>【2016-06-21】</label> paths 增加data文件夹路径、增加ilog路径
+        </p>
+    </div>
+</div>
+<script>
+var zero_config = {
+    controller: '/js/page/ui/inputclear.js',
+    data: {
+    },
+    env: 'prd'
+};
+</script>
+<script data-main="/js/page/common.js?v=1" src="/build/zero.seed.js"></script>
+</body>
+</html>

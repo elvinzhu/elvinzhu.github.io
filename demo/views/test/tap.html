@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>众安保险前端DEMO</title>
+    <meta name="keywords" content="demo" />
+    <meta name="description" content="demo" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" >
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no,minimal-ui">
+    <meta name="format-detection" content="telephone=no,email=no">
+    <meta content="yes" name="apple-touch-fullscreen">
+    <script>(window.__setFontSize__=function(){document.documentElement.style.fontSize = Math.min( 750, Math.max(document.documentElement.clientWidth, 320) ) / 320 * 14 + 'px'})()</script>
+    <link rel="stylesheet" href="/css/main.css" />
+    <link rel="stylesheet" href="/css/page/index.css" />
+</head>
+<body>
+<div id="viewport" class="pg-index pb30">
+    <div id="header">
+        <header>
+            <span class="l"><i class="back" event-src="click_back"></i></span>
+<!--            <span class="l"><i class="menu" onclick="_toggleMenu_()"><em></em></i></span>-->
+            <h1>FastClick</h1>
+            <span class="r"></span>
+        </header>
+    </div>
+    <div id="main">
+        <button id="test">Tap Me</button>
+        <button event-src="tapMe" class="ml10">Tap Me Again!</button>
+    </div>
+    <footer id="footer" class="tc"></footer>
+</div>
+<script>
+var zero_config = {
+    controller: 'default',
+    data:{},
+    actions:{
+        run: function(data){
+            
+            $('#test').on('tap', function(e){
+                
+                Zero.showToast('tap triggered!')
+            })
+        },
+        tapMe: function(e){
+
+            Zero.showToast('tap triggered again!')
+        }
+    },
+    env: 'prd'
+}
+</script>
+<script data-main="/js/page/common.js" src="/build/zero.seed.js"></script>
+</body>
+</html>
