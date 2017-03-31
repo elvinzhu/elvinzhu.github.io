@@ -209,7 +209,8 @@ gulp.task( 'replace', function(){
     
     return gulp.src( './**/*.html')
 //        .pipe(replace('/js/page/common', '/demo/js/page/common'))
-        .pipe(replace('/demo/demo/', '/demo/'))
+        .pipe(replace('css/main.css', '/demo/css/main.css'))
+        .pipe(replace('css/page/index.css', '/demo/css/page/index.css'))
         .pipe(gulp.dest('.'));
 })
 
