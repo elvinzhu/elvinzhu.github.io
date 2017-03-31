@@ -207,10 +207,11 @@ gulp.task( 'server', function(){
 
 gulp.task( 'replace', function(){
     
-    return gulp.src( './**/*.html')
+    return gulp.src( './**/*.js')
 //        .pipe(replace('/js/page/common', '/demo/js/page/common'))
-        .pipe(replace('/build/zero.seed.js', '/demo/build/zero.seed.js'))
+//        .pipe(replace('/build/zero.seed.js', '/demo/build/zero.seed.js'))
 //        .pipe(replace('css/main.css', '/demo/css/main.css'))
+        .pipe(replace('/images/', '/demo/images/'))
 //        .pipe(replace('css/page/index.css', '/demo/css/page/index.css'))
         .pipe(gulp.dest('.'));
 })
