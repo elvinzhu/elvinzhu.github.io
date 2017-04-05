@@ -1,0 +1,1 @@
+define(["controller"],function(n){var o="<h1>I am about</h1>",t=n.extend({onCreate:function(){this.$el.html(o)},onShow:function(){},onHide:function(){}});t.prototype;return t});

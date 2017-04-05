@@ -1,0 +1,1 @@
+define(["controller"],function(o){var n='<h1>I am index !</h1> <a href="#about">ABOUT</a>',e=o.extend({onCreate:function(o){console.log(o),this.$el.html(n),console.log("onCreate")},onShow:function(){console.log("onShow")},onHide:function(){console.log("onHide")}});e.prototype;return e});

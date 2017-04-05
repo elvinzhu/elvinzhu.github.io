@@ -1,0 +1,1 @@
+var App={};App.doSomething=function(n){},define("common",[],function(){return App.balbalba="balbal",App});
