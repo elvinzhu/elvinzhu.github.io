@@ -208,11 +208,14 @@ gulp.task( 'server', function(){
 gulp.task( 'replace', function(){
     
     return gulp.src( './**/*.html')
-//        .pipe(replace('/js/page/common', '/demo/js/page/common'))
-//        .pipe(replace('/build/zero.seed.js', '/demo/build/zero.seed.js'))
-//        .pipe(replace('css/main.css', '/demo/css/main.css'))
-//        .pipe(replace('/images/', '/demo/images/'))
-//        .pipe(replace('css/page/index.css', '/demo/css/page/index.css'))
+        .pipe(replace('/js/page/common', '/demo/js/page/common'))
+        .pipe(replace('/build/zero.seed.dev.js', '/demo/build/zero.seed.js'))
+        .pipe(replace('/css/main.css', '/demo/css/main.css'))
+        .pipe(replace('/images/', '/demo/images/'))
+        .pipe(replace('/css/page/index.css', '/demo/css/page/index.css'))
+        .pipe(replace('/js/page/index.js', '/demo/js/page/index.js'))
+        .pipe(replace("controller: '/js/page/", "controller: '/demo/js/page/"))
+        .pipe(replace("env: 'dev'", "env: 'prd'"))
         .pipe(gulp.dest('.'));
 })
 

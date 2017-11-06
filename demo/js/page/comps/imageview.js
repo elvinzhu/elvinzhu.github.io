@@ -84,13 +84,13 @@ define( [ 'controller', 'tool/imagemin', 'ui/ui.imageview' ], function( BaseCont
     pt.showImgs = function(e){
         
         var data = [{
-            src: '/demo/images/page/test/2.jpg',
+            src: '/images/page/test/2.jpg',
             des: '我的女神赵丽颖'
         },{
-            src: '/demo/images/page/test/3.jpg',
+            src: '/images/page/test/3.jpg',
             des: '风景'
         },{
-            src: '/demo/images/page/test/1.jpg',
+            src: '/images/page/test/1.jpg',
             des: 'dgf'
         }];
         

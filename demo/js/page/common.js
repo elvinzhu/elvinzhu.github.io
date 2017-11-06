@@ -7,7 +7,7 @@ requirejs.config({
 })
 
 // 方式1：
-define( 'common', [],  function(){
+define( 'common', [ 'tool/router' ],  function( Router ){
     
     var common = {};
     
@@ -16,6 +16,10 @@ define( 'common', [],  function(){
     common.demo = function(){
         
     }
+    
+    Router.on('shown', function(controller){
+        console.log(controller.page_id)
+    })
     
     return common;
     
@@ -26,11 +30,11 @@ define( 'common', [],  function(){
 var DemoComm = {
     
     reloador: function(){
-        $(document.body).append('<div class="white" style="width:40px;height:40px;border-radius:50%;position:fixed; top:53px;right:5px;background-color:rgba(0, 128, 0,0.3);text-align:center;line-height:40px;z-index:100000000" onclick="location.reload(true)">刷</div>')
+        //$(document.body).append('<div class="white" style="width:40px;height:40px;border-radius:50%;position:fixed; top:53px;right:5px;background-color:rgba(0, 128, 0,0.3);text-align:center;line-height:40px;z-index:100000000" onclick="location.reload(true)">刷</div>')
     }
 };
 
-//DemoComm.reloador();
+DemoComm.reloador();
 
 
 /*

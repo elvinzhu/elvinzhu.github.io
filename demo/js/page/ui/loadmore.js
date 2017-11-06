@@ -31,7 +31,7 @@ define( ['controller', 'ui/ui.loadmore'], function( BaseController, LoadMore ){
             },
             pageSize: 10,
             page: 0,
-            url: '/demo/fakeapi/list.json',
+            url: '/fakeapi/list.json',
             method: 'GET' // 默认 POST
 //                type: ''       // white: 白色的loading图标， 默认蓝色loading图标
         })

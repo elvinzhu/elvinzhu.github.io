@@ -1,4 +1,4 @@
-define( [ 'controller', 'ui/ui.select', '/demo/js/common/data-area.js'], function( BaseController, Select, AreaData ){
+define( [ 'controller', 'ui/ui.select', '/js/common/data-area.js'], function( BaseController, Select, AreaData ){
     
     'use strict';
     
@@ -7,7 +7,8 @@ define( [ 'controller', 'ui/ui.select', '/demo/js/common/data-area.js'], functio
         run: function( data ){
               
             var ddl0 = new Select(AreaData, {
-                columns: 1
+                columns: 1,
+                title: '旅游目的地'
             });
 
             var ddl1 = new Select(AreaData, {

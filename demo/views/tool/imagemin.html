@@ -32,6 +32,13 @@
             <i class="param">fileElement {FileElement}</i>input[type=file]DOM元素<br>
             <i class="param">resultCallback {function}</i>回调函数<br>
         </small>
+        <p class="title mt10">Imagemin.readFiles(fileElement,resultCallback,onend,length)：读取多个文件，单个读取成功之后给resultCallback传递base64字符串, 如果没有选择文件则传递“no file”；所有读取完成之后回调onend</p>
+        <small>
+            <i class="param">fileElement {FileElement}</i>input[type=file]DOM元素<br>
+            <i class="param">resultCallback {function}</i>单个读取成功回调函数<br>
+            <i class="param">onend {function}</i>所有读取完成之后的回调函数<br>
+            <i class="param">length {int}</i>需要读取的个数（默认所有文件）<br>
+        </small>
         <p class="title mt10">Imagemin.compress(img,width,height,quality)：压缩图片至指定宽高</p>
         <small>
             <i class="param">img {ImageElement|Image}</i>图片DOM元素<br>

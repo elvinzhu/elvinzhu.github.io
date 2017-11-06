@@ -19,7 +19,7 @@ define( [ 'controller' ], function( BaseController ){
         var $result = this.$('#result').html('error');
         
         var data = this.readData();
-        var html = this.T('#txtTpl', data);
+        var html = this.T('#demoTpl', data);
         
         html && setTimeout(function(){
              $result.html(html)
