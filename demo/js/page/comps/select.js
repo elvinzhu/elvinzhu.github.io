@@ -1,4 +1,4 @@
-define( [ 'controller', 'ui/ui.select', '/js/common/data-area.js'], function( BaseController, Select, AreaData ){
+define( [ 'controller', 'ui/ui.select', '/demo/js/common/data-area.js'], function( BaseController, Select, AreaData ){
     
     'use strict';
     
